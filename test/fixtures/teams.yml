@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  available_salary: 1
+  user_id: 1
+  points_total: 1
+  league_id: 1
+
+two:
+  name: MyString
+  available_salary: 1
+  user_id: 1
+  points_total: 1
+  league_id: 1
