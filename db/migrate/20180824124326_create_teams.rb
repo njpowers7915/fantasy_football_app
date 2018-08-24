@@ -2,7 +2,7 @@ class CreateTeams < ActiveRecord::Migration[5.2]
   def change
     create_table :teams do |t|
       t.string :name
-      t.integer :available_salary
+      t.integer :available_salary, default: 16
       t.integer :user_id
       t.integer :points_total
       t.integer :league_id
