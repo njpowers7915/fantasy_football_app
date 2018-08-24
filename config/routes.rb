@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root "welcome#home"
+
+  
+
   resources :comments
   resources :leagues
   resources :positions
