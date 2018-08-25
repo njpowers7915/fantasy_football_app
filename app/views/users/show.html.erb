@@ -1,0 +1,33 @@
+<% if @message %>
+  <div class="center alert">
+    <p><%= @message %></p>
+  </div>
+<% end %>
+
+<% if is_admin? %>
+<h4>LEAGUE ADMIN</h4>
+<% end %>
+
+<h2>Welcome <%= @user.name %>!</h2><br>
+
+<% if @user.leagues.nil? %>
+  <% if is_admin? %>
+    <h4><%= link_to "Create New League", new_user_league_path(@user) %></h4>
+  <% else %>
+    <h4><%= link_to "Join a League", leagues_path %></h4>
+  <% end %>
+<% else %>
+  <h4>Your Teams:</h4><br>
+  <ol>
+    <% @user.teams.each do |team| %>
+    <li><%= link_to team.name, user_team_path(team.user, team) %> --- <%= link_to team.league, league_path(team.league) %></li><br>
+    <% end %>
+  </ol>
+  <h4><%= link_to "Create New Team", new_user_team_path(@user) %></h4>
+<% end %>
+<br>
+
+<h4><%= link_to "Playler Stats", players_path %></h4><br>
+
+<!-- <h4><%= link_to "Most Popular Songs", '/songs/most_popular' %></h4><br> -->
+<!-- CREATE CUSTOM ROUTES !!! -->
