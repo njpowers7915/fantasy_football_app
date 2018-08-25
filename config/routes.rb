@@ -9,11 +9,20 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   get '/logout', to: "sessions#destroy"
 
-  resources :comments
+  resources :users do
+    resources :teams, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :leagues, only: [:new, :create]
+    resources :comments, only: [:show, :index]
+  end
+
+  resources :teams, only: [:index]
   resources :leagues
-  resources :positions
-  resources :teams
   resources :players
-  resources :users
+
+  #resources :comments
+  #resources :leagues
+  #resources :teams
+  #resources :players
+  #resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
