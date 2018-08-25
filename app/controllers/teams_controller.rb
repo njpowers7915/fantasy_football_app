@@ -25,4 +25,26 @@ class TeamsController < ApplicationController
     end
   end
 
+  def edit
+    @team = Team.find(params[:id])
+    @user = @team.user
+    #@players = Player.all
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    @user = @team.user
+    #NEED TO ELABORATE ON THIS ROUTE
+  end
+
+  def index
+    @teams = Team.all
+  end
+
+  private
+
+  def team_params
+    params.require(:team).permit(:name, :available_salary, :user_id, :points_total, :league_id)
+  end
+
 end
