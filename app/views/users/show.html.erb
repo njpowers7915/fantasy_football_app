@@ -14,16 +14,19 @@
   <% if is_admin? %>
     <h4><%= link_to "Create New League", new_user_league_path(@user) %></h4>
   <% else %>
-    <h4><%= link_to "Join a League", leagues_path %></h4>
+    <h4>You have not been added to any leagues</h4>
   <% end %>
 <% else %>
-  <h4>Your Teams:</h4><br>
+  <h4>Your Leagues:</h4><br>
   <ol>
-    <% @user.teams.each do |team| %>
-    <li><%= link_to team.name, user_team_path(team.user, team) %> --- <%= link_to team.league, league_path(team.league) %></li><br>
+    <% @user.leagues.each do |league| %>
+      <% if !league.team.nil? %>
+        <li><%= link_to league.team.name, user_team_path(@user, league.team) %> --- <%= link_to league, league_path(league) %></li><br>
+      <% else %>
+        <li><%= link_to "Create Team", new_user_team_path(@user, league.team) %> --- League: <%= league.name %></li><br>
+      <% end %>
     <% end %>
   </ol>
-  <h4><%= link_to "Create New Team", new_user_team_path(@user) %></h4>
 <% end %>
 <br>
 
