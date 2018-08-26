@@ -1,0 +1,6 @@
+<h2>Message Board</h2>
+
+<ul>
+<% @comments.each do |comment| %>
+  <li><%= comment.created_at %> -- "<%= comment.content %>"<br>
+    -- <%= comment.team.user.name %><li><br>
