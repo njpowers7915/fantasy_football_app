@@ -4,4 +4,4 @@ class Team < ApplicationRecord
   has_many :comments
   has_many :teams_players
   has_many :players, through: :teams_players
-end
+end 

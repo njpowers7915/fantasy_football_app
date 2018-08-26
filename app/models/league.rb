@@ -1,4 +1,5 @@
 class League < ApplicationRecord
-  has_many :teams
-  has_many :comments, through: :teams
+  has_many :users
+  has_many :teams, through: :users
+  has_many :comments, through: :users
 end
