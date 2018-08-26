@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def index
-    @league = League.find_by_id(session[:league_id])
+    @league = League.find_by_id(params[:id])
     @comments = @league.comments
   end
 

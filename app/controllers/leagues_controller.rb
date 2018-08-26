@@ -27,6 +27,7 @@ class LeaguesController < ApplicationController
         session[:league_id] = @league.id
         @user = User.find_by_id(session[:user_id])
         @teams = @league.teams
+        @comments = @league.comments
       end
     end
 

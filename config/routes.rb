@@ -12,11 +12,12 @@ Rails.application.routes.draw do
   resources :users do
     resources :teams, only: [:new, :create, :show, :edit, :update, :destroy]
     #resources :leagues, only: [:new, :create, :show]
-    resources :comments, only: [:show, :index]
   end
 
   resources :teams, only: [:index]
-  resources :leagues
+  resources :leagues do
+    resources :comments, only: [:new, :create, :show, :index]
+  end
   resources :players
 
   #resources :comments
