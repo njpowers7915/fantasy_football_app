@@ -4,7 +4,7 @@
   <input list="players" name="team[player]" />
   <datalist id="players">
     <% Player.all.each do |player| %>
-      <option value="<%= player.name %> --- <%= player.position %> --- <%= player.salary %>">
+      <option value="<%= player.name %> --- <%= player.position.name %> --- $ <%= player.salary %>">
     <% end %>
   </datalist>
 

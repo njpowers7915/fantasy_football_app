@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2018_08_26_150031) do
     t.string "name"
     t.integer "position_id"
     t.integer "salary"
-    t.integer "points"
+    t.integer "points", default: 0
     t.string "pro_team"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2018_08_26_150031) do
     t.string "name"
     t.integer "available_salary", default: 16
     t.integer "user_id"
-    t.integer "points_total", default: 0
+    t.integer "points_total"
     t.integer "league_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

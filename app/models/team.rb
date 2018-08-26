@@ -6,11 +6,12 @@ class Team < ApplicationRecord
   has_many :players, through: :teams_players
 
   def get_hooker
-    self.players.where(position_id: 1)
+    self.players.where(position_id: 1).first
+
   end
 
   def get_front_row
-    self.players.where(position_id: 2)
+    self.players.where(position_id: 2).first
   end
 
   def get_second_row

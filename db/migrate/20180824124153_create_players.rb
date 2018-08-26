@@ -4,7 +4,7 @@ class CreatePlayers < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :position_id
       t.integer :salary
-      t.integer :points
+      t.integer :points, default: 0
       t.string :pro_team
 
       t.timestamps
