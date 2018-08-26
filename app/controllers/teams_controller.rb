@@ -39,11 +39,16 @@ class TeamsController < ApplicationController
       if @team.update_attributes(team_params)
         if params["team"]["player"] && !params["team"]["player"].empty?
           player_array = params["team"]["player"].split(" --- ")
-          if player = Player.find_by(name: player_array[0], position: Position.find_by(name: player_array[1]))
-            player = Player.find_by(name: player_array[0], position: Position.find_by(name: player_array[1]))
-            if !@team.players.include?(player)
-              @team.players << player
-              redirect_to user_team_path(@user, @team)
+          if Player.find_by(name: player_array[0], position: Position.find_by(name: player_array[1]))
+            @player = Player.find_by(name: player_array[0], position: Position.find_by(name: player_array[1]))
+            if !@team.players.include?(@player)
+              if @team.players.find_by(position: @player.position)
+                flash[:notice] = "Your team can only have 1 #{@player.position.name}"
+                redirect_to user_team_path(@user, @team)
+              else
+                @team.players << @player
+                redirect_to user_team_path(@user, @team)
+              end
             else
               flash[:notice] = "Player is already on this team"
               redirect_to user_team_path(@user, @team)
@@ -53,7 +58,7 @@ class TeamsController < ApplicationController
             redirect_to user_team_path(@user, @team)
           end
         else
-          #render 'edit'
+          redirect_to user_team_path(@user, @team)
         end
       end
     end
