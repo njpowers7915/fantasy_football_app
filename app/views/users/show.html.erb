@@ -10,7 +10,7 @@
 
 <h2>Welcome <%= @user.name %>!</h2><br>
 
-<% if @user.leagues.nil? %>
+<% if @user.leagues.empty? %>
   <% if is_admin? %>
     <h4><%= link_to "Create New League", new_user_league_path(@user) %></h4>
   <% else %>
@@ -20,7 +20,7 @@
   <h4>Your Leagues:</h4><br>
   <ol>
     <% @user.leagues.each do |league| %>
-      <% if !league.team.nil? %>
+      <% if !league.teams.empty? %>
         <li><%= link_to league.team.name, user_team_path(@user, league.team) %> --- <%= link_to league, league_path(league) %></li><br>
       <% else %>
         <li><%= link_to "Create Team", new_user_team_path(@user, league.team) %> --- League: <%= league.name %></li><br>
