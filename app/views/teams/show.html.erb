@@ -12,9 +12,11 @@
 <% else %>
   <h4><%= link_to "#{@league.name} League Homepage", league_path %></h4>
 <% end %>
+<br>
+
 
 <% if @team.user == current_user %>
-  <h5><%= link_to "Edit Roster", edit_user_team_path(@user, @team) %></h5>
+  <h4><%= link_to "View Roster", edit_user_team_path(@user, @team) %></h4>
   <%= render 'add_player' %>
 <% end %>
 <br>
