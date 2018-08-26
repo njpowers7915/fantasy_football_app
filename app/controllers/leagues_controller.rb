@@ -5,7 +5,7 @@ class LeaguesController < ApplicationController
 
   def create
     @league = League.new(league_params)
-    @user = User.find(params[:user_id])
+    @user = User.find(session[:user_id])
     @league.users << @user
     if @legaue.save
       session[:league_id] = @league.id
@@ -32,7 +32,7 @@ class LeaguesController < ApplicationController
   private
 
   def league_params
-    params.permit(:name)
+    params.require(:league).permit(:name)
   end
 
 end

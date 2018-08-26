@@ -14,18 +14,12 @@
       <th>Team Name</th>
       <th>Points</th>
       <th>User</th>
-      <th></th>
-      <th></th>
     </tr>
     <% @league.users.each do |user| %>
     <tr>
       <td><%= link_to user.team.name, user %></td>
       <td><%= user.team.points_total %></td>
       <td><%= user.email %></td>
-      <td><%= render partial: 'songs/play_song', locals: {song: song} %></td>
-      <% if @playlist.user == current_user %>
-        <td><%= render partial: 'songs/delete_song', locals: {song: song} %></td>
-      <% end %>
     </tr>
     <% end %>
   </table>
