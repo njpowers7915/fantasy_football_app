@@ -11,7 +11,7 @@
       <% if @team.get_hooker.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= @team.get_hooker.name %></th>
+        <th><%= link_to @team.get_hooker.name, player_path(@team.get_hooker) %></th>
         <th><%= @team.get_hooker.points %></th>
         <th><%= @team.get_hooker.salary %></th>
       <% end %>
@@ -22,7 +22,7 @@
       <% if @team.get_front_row.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= @team.get_front_row.name %></th>
+        <th><%= link_to @team.get_front_row.name, player_path(@team.get_front_row) %></th>
         <th><%= @team.get_front_row.points %></th>
         <th><%= @team.get_front_row.salary %></th>
       <% end %>
@@ -35,7 +35,7 @@
         <th></th>
         <th></th>
       <% else %>
-        <th><%= @team.get_second_row.name %></th>
+        <th><%= link_to @team.get_second_row.name, player_path(@team.get_second_row) %></th>
         <th><%= @team.get_second_row.points %></th>
         <th><%= @team.get_second_row.salary %></th>
       <% end %>
@@ -46,7 +46,7 @@
       <% if @team.get_half.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= @team.get_half.name %></th>
+        <th><%= link_to @team.get_half.name, player_path(@team.get_half) %></th>
         <th><%= @team.get_half.points %></th>
         <th><%= @team.get_half.salary %></th>
       <% end %>
@@ -57,7 +57,7 @@
       <% if @team.get_centre.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= @team.get_centre.name %></th>
+        <th><%= link_to @team.get_centre.name, player_path(@team.get_centre) %></th>
         <th><%= @team.get_centre.points %></th>
         <th><%= @team.get_centre.salary %></th>
       <% end %>
@@ -68,7 +68,7 @@
       <% if @team.get_outside_back.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= @team.get_outside_back.name %></th>
+        <th><%= link_to @team.get_outside_back.name, player_path(@team.get_outside_back) %></th>
         <th><%= @team.get_outside_back.points %></th>
         <th><%= @team.get_outside_back.salary %></th>
       <% end %>
