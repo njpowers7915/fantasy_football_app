@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :teams, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :leagues, only: [:new, :create]
+    resources :leagues, only: [:new, :create, :show]
     resources :comments, only: [:show, :index]
   end
 

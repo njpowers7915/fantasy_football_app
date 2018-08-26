@@ -18,7 +18,11 @@
   <% end %>
 <% else %>
   <h4>Your Leagues:</h4><br>
-
+    <ul>
+      <% @user.leagues.each do |league| %>
+        <li><%= link_to league.name, user_league_path(@user, league) %></li>
+      <% end %>
+    </ul>
 <% end %>
 <br>
 
