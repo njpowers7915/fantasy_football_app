@@ -4,7 +4,7 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :available_salary, default: 16
       t.integer :user_id
-      t.integer :points_total
+      t.integer :points_total, default: 0
       t.integer :league_id, default: :null
 
       t.timestamps

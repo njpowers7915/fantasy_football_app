@@ -10,8 +10,7 @@ class Team < ApplicationRecord
     if self.available_salary < 0
       return false
     else
-      self.update_salary(player)
-      return true
+      self.save
     end
   end
 
