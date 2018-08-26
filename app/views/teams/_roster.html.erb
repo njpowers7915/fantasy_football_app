@@ -1,0 +1,37 @@
+<% if @team.players.nil? %>
+  <h4>Roster is EMPTY</h4>
+<% else %>
+  <table style='width:50%'>
+    <tr>
+      <th>Position</th>
+      <th>Name</th>
+      <th>Points</th>
+      <th>Salary</th>
+    </tr>
+
+    <tr>
+      <th>Hooker</th>
+      <% if @team.get_hooker.nil? %>
+        <% render 'add_player' %>
+      <% else %>
+        <th><%= @team.get_hooker.name %></th>
+        <th><%= @team.get_hooker.points %></th>
+        <th><%= @team.get_hooker.salary %></th>
+      <% end %>
+    </tr>
+
+      <th></th>
+      <th></th>
+    </tr>
+    <% @team.players.each do |player| %>
+    <tr>
+      <td><%= link_to player.name, player %></td>
+      <td><%= player.points %></td>
+      <td><%= player.salary %></td>
+      <% if @team.user == current_user %>
+        <!-- <td><%= render partial: 'songs/delete_song', locals: {song: song} %></td> -->
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
