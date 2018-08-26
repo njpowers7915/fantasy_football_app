@@ -2,28 +2,6 @@
 <br>
 <%= form_for ([@user, @league]) do |f| %>
   <h4>League Name: <%= f.text_field :name %></h4>
-  <br>
-  <label for="league_user">Add Users: </label><br>
-  1: <input list="users" name="league[user]" />
-  <datalist id="users">1.
-    <% User.all.each do |user| %>
-      <option value="<%= user.email %>">
-    <% end %>
-  </datalist><br><br>
-
-  2: <input list="users" name="league[user]" />
-  <datalist id="users">1.
-    <% User.all.each do |user| %>
-      <option value="<%= user.email %>">
-    <% end %>
-  </datalist><br><br>
-
-  3: <input list="users" name="league[user]" />
-  <datalist id="users">1.
-    <% User.all.each do |user| %>
-      <option value="<%= user.email %>">
-    <% end %>
-  </datalist><br><br>
 
   <%= f.submit "Create League" %>
 <% end %>
