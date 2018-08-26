@@ -2,27 +2,26 @@
 
 <% if is_admin? %>
   <h5><%= link_to "Change League Name", edit_league_path(@league) %></h5>
-
-  <%= render 'add_user' %>
 <% end %>
 
-<% if @league.teams.empty? %>
-  <h4>Create Your Team</h4>
-<% else %>
-  <table style='width:50%'>
-    <tr>
-      <th>Team Name</th>
-      <th>Points</th>
-      <th>User</th>
-    </tr>
-    <% @league.teams.each do |team| %>
-    <tr>
-      <td><%= link_to team.name, team %></td>
-      <td><%= team.points_total %></td>
-      <td><%= team.user.name %></td>
+
+<h4> League Standings </h4>
+<table style='width:50%'>
+  <tr>
+    <th>Position</th>
+    <th>Team Name</th>
+    <th>Points</th>
+    <th>User</th>
+  </tr>
+
+  <% @teams.each_with_index do |team, i| %>
+  <tr>
+    <td><%= i %></td>
+    <td><%= link_to team.name, user_team_path(team.user, team) %></td>
+    <td><%= team.points_total %></td>
+    <td><%= team.user.name %></td>
     </tr>
     <% end %>
   </table>
-<% end %>
 
 <h4><%= link_to "Message Board", league_comments_path(@league, @comments) %></h4>

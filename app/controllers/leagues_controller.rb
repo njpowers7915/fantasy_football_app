@@ -1,20 +1,21 @@
 class LeaguesController < ApplicationController
   def new
-    @user = User.find(session[:user_id])
-    @league = @user.leagues.build(admin_id: session[:user_id])
+    @league = League.new(league_params)
   end
 
   def create
     @league = League.new(league_params)
-    @user = User.find(session[:user_id])
-    @league.users << @user
+    @team = Team.find_by(user_id: session[:user_id])
+    @league.teams << @team
+    @league.admin_id = session[:user_id]
     if @league.save
       session[:league_id] = @league.id
-      @user.save
+      @league.save
       redirect_to @league
     else
       render 'new'
     end
+  end
 
     def index
       @leagues = League.all
@@ -24,14 +25,8 @@ class LeaguesController < ApplicationController
       if League.find_by_id(params[:id])
         @league = League.find_by_id(params[:id])
         session[:league_id] = @league.id
-        @user = User.find_by_id(sessions[:user_id])
-        @teams = @leauge.teams
-
-      if Team.find_by_id(params[:id])
-        @team = Team.find_by_id(params[:id])
-        session[:team_id] = @team.id
-        @user = User.find_by_id(sessions[:user_id])
-        @players = @team.players
+        @user = User.find_by_id(session[:user_id])
+        @teams = @league.teams
       end
     end
 
@@ -43,7 +38,6 @@ class LeaguesController < ApplicationController
 
     end
 
-  end
 
   private
 
