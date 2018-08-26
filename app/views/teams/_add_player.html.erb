@@ -1,0 +1,14 @@
+<%= form_for ([@user, @team]) do |f| %>
+  <%= f.hidden_field :name %><br>
+  <label for="team_player">Add Players: </label>
+  <input list="players" name="team[player]" />
+  <datalist id="players">
+    <% Player.all.each do |player| %>
+      <option value="<%= player.name %> --- <%= player.position %> --- <%= player.salary %>">
+    <% end %>
+  </datalist>
+
+  <%= f.submit "+" %>
+  <br>
+  <br>
+<% end %>
