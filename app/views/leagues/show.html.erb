@@ -1,13 +1,13 @@
 <h2> <%= @league.name %> </h2><br>
 
 <% if is_admin? %>
-  <h5><%= link_to "Change League Name", edit_user_league_path(@user, @league) %></h5>
+  <h5><%= link_to "Change League Name", edit_league_path(@league) %></h5>
 
   <%= render 'add_user' %>
 <% end %>
 
-<% if @league.users.empty? %>
-  <h4>Add users to this league</h4>
+<% if @league.teams.empty? %>
+  <h4>Create Your Team</h4>
 <% else %>
   <table style='width:50%'>
     <tr>
@@ -15,11 +15,11 @@
       <th>Points</th>
       <th>User</th>
     </tr>
-    <% @league.users.each do |user| %>
+    <% @league.teams.each do |team| %>
     <tr>
-      <td><%= link_to user.team.name, user %></td>
-      <td><%= user.team.points_total %></td>
-      <td><%= user.email %></td>
+      <td><%= link_to team.name, team %></td>
+      <td><%= team.points_total %></td>
+      <td><%= team.user.name %></td>
     </tr>
     <% end %>
   </table>

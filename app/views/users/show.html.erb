@@ -12,7 +12,7 @@
 
 <% if @user.leagues.empty? %>
   <% if is_admin? %>
-    <h4><%= link_to "Create New League", new_user_league_path(@user) %></h4>
+    <h4><%= link_to "Create New League", new_league_path %></h4>
   <% else %>
     <h4>You have not been added to any leagues</h4>
   <% end %>
@@ -20,7 +20,7 @@
   <h4>Your Leagues:</h4><br>
     <ul>
       <% @user.leagues.each do |league| %>
-        <li><%= link_to league.name, user_league_path(@user, league) %></li>
+        <li><%= link_to league.name, league_path(league) %></li>
       <% end %>
     </ul>
 <% end %>

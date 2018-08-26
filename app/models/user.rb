@@ -3,8 +3,8 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
-  has_many :user_leagues
-  has_many :leagues, through: :user_leagues
+  has_many :teams
+  has_many :leagues, through: :teams
   has_many :comments, through: :teams
-  has_many :teams, through: :leagues
+
 end
