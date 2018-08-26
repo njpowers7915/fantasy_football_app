@@ -15,6 +15,14 @@ class Team < ApplicationRecord
     end
   end
 
+  def update_points
+    point_total = 0
+    self.players.each do |player|
+      point_total += player.points
+    end
+    return point_total
+  end
+
   def update_salary(player)
     self.available_salary = self.available_salary - player.salary
   end

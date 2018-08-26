@@ -67,6 +67,7 @@ class TeamsController < ApplicationController
         end
       end
     end
+    @team.update_points
   end
 
   def index
