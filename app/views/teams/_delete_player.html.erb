@@ -1,0 +1,8 @@
+<%= form_for player do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :artist %>
+  <%= f.hidden_field :genre %>
+  <%= f.hidden_field :plays %>
+  <input type='hidden' id='delete_player' name="delete" >
+  <%= f.submit "DELETE" %>
+<% end %>

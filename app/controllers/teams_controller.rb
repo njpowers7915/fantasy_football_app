@@ -53,10 +53,10 @@ class TeamsController < ApplicationController
             redirect_to user_team_path(@user, @team)
           end
         else
-          render 'edit'
+          #render 'edit'
         end
       end
-    #NEED TO ELABORATE ON THIS ROUTE
+    end
   end
 
   def index

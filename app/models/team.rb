@@ -7,7 +7,6 @@ class Team < ApplicationRecord
 
   def get_hooker
     self.players.where(position_id: 1).first
-
   end
 
   def get_front_row
@@ -15,18 +14,18 @@ class Team < ApplicationRecord
   end
 
   def get_second_row
-    self.players.where(position_id: 3)
+    self.players.where(position_id: 3).first
   end
 
   def get_half
-    self.players.where(position_id: 4)
+    self.players.where(position_id: 4).first
   end
 
-  def self.get_centre
-    self.players.where(position_id: 5)
+  def get_centre
+    self.players.where(position_id: 5).first
   end
 
-  def outside_back
-    self.players.where(position_id: 6)
+  def get_outside_back
+    self.players.where(position_id: 6).first
   end
 end

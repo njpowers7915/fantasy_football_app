@@ -1,6 +1,6 @@
 <%= form_for ([@user, @team]) do |f| %>
   <%= f.hidden_field :name %><br>
-  <label for="team_player">Add Players: </label>
+  <label for="team_player">Add Player: </label>
   <input list="players" name="team[player]" />
   <datalist id="players">
     <% Player.all.each do |player| %>
