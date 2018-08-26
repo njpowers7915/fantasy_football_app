@@ -10,19 +10,20 @@
 
 <h2>Welcome <%= @user.name %>!</h2><br>
 
-<% if @user.leagues.empty? %>
-  <% if is_admin? %>
-    <h4><%= link_to "Create New League", new_league_path %></h4>
-  <% else %>
-    <h4>You have not been added to any leagues</h4>
-  <% end %>
-<% else %>
-  <h4>Your Leagues:</h4><br>
+<% if !@user.teams.empty? %>
+  <h4>Your Teams:</h4><br>
     <ul>
       <% @user.leagues.each do |league| %>
         <li><%= link_to league.name, league_path(league) %></li>
       <% end %>
     </ul>
+<% end %>
+<br>
+
+<% if is_admin? %>
+  <h4><%= link_to "Create League", new_team_path %></h4>
+<% else %>
+    <h4><%= link_to "Create Team", new_team_path %></h4>
 <% end %>
 <br>
 
