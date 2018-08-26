@@ -38,3 +38,10 @@ Player.create(name: 'Valentine Holmes', position_id: 6, salary: 3, pro_team: 'Sh
 Player.create(name: 'Jarryd Hayne', position_id: 6, salary: 2, pro_team: 'Eels')
 Player.create(name: 'Blake Ferguson', position_id: 6, salary: 2, pro_team: 'Roosters')
 Player.create(name: 'Josh Dugan', position_id: 6, salary: 1, pro_team: 'Sharks')
+
+User.create(name: 'Steve', email: 'steve@gmail.com', password_digest: '1121')
+User.create(name: 'Nathan', email: 'nathan@gmail.com', password_digest: '121')
+User.create(name: 'Bill', email: 'bill@gmail.com', password_digest: '11')
+User.create(name: 'Sarah', email: 'sarah@gmail.com', password_digest: '11231')
+User.create(name: 'Tommy', email: 'tommy@gmail.com', password_digest: '14121')
+User.create(name: 'Rob', email: 'rob@gmail.com', password_digest: '51121')

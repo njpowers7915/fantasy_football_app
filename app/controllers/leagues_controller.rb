@@ -9,7 +9,8 @@ class LeaguesController < ApplicationController
     @league.users << @user
     if @legaue.save
       session[:league_id] = @league.id
-      redirect_to user_league_path(@user, @team)
+      @user.save
+      redirect_to user_league_path(@user, @league)
     else
       render 'new'
     end

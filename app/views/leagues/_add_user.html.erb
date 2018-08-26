@@ -1,0 +1,14 @@
+<%= form_for ([@user, @league]) do |f| %>
+  <%= f.hidden_field :name %><br>
+  <label for="playlist_song">Add User: </label>
+  <input list="users" name="league[user]" />
+  <datalist id="users">
+    <% User.all.each do |user| %>
+      <option value="<%= user.email %>">
+    <% end %>
+  </datalist>
+
+  <%= f.submit "+" %>
+  <br>
+  <br>
+<% end %>
