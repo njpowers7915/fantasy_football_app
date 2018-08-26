@@ -46,8 +46,13 @@ class TeamsController < ApplicationController
                 flash[:notice] = "Your team can only have 1 #{@player.position.name}"
                 redirect_to user_team_path(@user, @team)
               else
-                @team.players << @player
-                redirect_to user_team_path(@user, @team)
+                if valid_addition?(@player) == false
+                  flash[:notice] = "You don't have enough money to add this player"
+                  redirect_to user_team_path(@user, @team)
+                else
+                  @team.players << @player
+                  redirect_to user_team_path(@user, @team)
+                end
               end
             else
               flash[:notice] = "Player is already on this team"

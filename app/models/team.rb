@@ -5,6 +5,20 @@ class Team < ApplicationRecord
   has_many :teams_players
   has_many :players, through: :teams_players
 
+  def valid_addition?(player)
+    self.update_salary(player)
+    if self.available_salary < 0
+      return false
+    else
+      self.update_salary(player)
+      return true
+    end
+  end
+
+  def update_salary(player)
+    self.available_salary = self.available_salary - player.salary
+  end
+
   def get_hooker
     self.players.where(position_id: 1).first
   end

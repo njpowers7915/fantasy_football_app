@@ -17,7 +17,6 @@
 
 <% if @team.user == current_user %>
   <h4><%= link_to "View Roster", edit_user_team_path(@user, @team) %></h4>
-  <%= render 'add_player' %>
 <% end %>
 <br>
 
