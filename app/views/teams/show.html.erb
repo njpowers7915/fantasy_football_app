@@ -1,0 +1,59 @@
+<h2> <%= @team.name %> </h2><br>
+
+<p>Total Points: <%= @team.points_total %></p><br>
+<p>Available Salary: $ <%= @team.available_salary %></p><br>
+
+<% if @team.league.nil? %>
+  <% if is_admin? %>
+    <h4><%= link_to "Create League", new_league_path %></h4>
+  <% else %>
+    <h4><%= link_to "Join a League", leagues_path %></h4>
+  <% end %>
+<% else %>
+  <h4><%= link_to "#{@league.name} League Homepage", league_path %></h4>
+<% end %>
+
+<% if @team.user == current_user %>
+  <h5><%= link_to "Edit Team Details", edit_user_team_path(@user, @team) %></h5>
+<% end %>
+<% if @team.players.nil? %>
+  <%
+
+
+<% if @playlist.user == current_user %>
+  <h5><%= link_to "Edit Playlist Details", edit_user_playlist_path(@user, @playlist) %></h5>
+
+  <%= render 'add_song' %>
+<% end %>
+
+<% if @playlist.songs.empty? %>
+  <h4>Playlist is EMPTY</h4>
+<% else %>
+  <table style='width:50%'>
+    <tr>
+      <th>Song Name</th>
+      <th>Artist</th>
+      <th>Genre</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @playlist.songs.each do |song| %>
+    <tr>
+      <td><%= link_to song.name, song %></td>
+      <td><%= song.artist %></td>
+      <td><%= song.genre %></td>
+      <td><%= render partial: 'songs/play_song', locals: {song: song} %></td>
+      <% if @playlist.user == current_user %>
+        <td><%= render partial: 'songs/delete_song', locals: {song: song} %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<br>
+<% if @playlist.user != current_user %>
+  <%= render 'users/like_playlist' %>
+<% end %>
+<br>
+<h4><%= link_to "View More Playlists", playlists_path %></h4>
