@@ -4,22 +4,22 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.name = auth['info']['name']
-      u.email = auth['info']['email']
-    end
-    session[:user_id] = @user.id
+    #@user = User.find_or_create_by(uid: auth['uid']) do |u|
+    #  u.name = auth['info']['name']
+    #  u.email = auth['info']['email']
+    #end
+    #session[:user_id] = @user.id
     #redirect_to @user
-    render 'welcome/home'
-    #if !params[:session][:name].nil?
-    #  @user = User.find_by(name: params[:session][:name])
-    #  if @user && @user.authenticate(params[:session][:password])
-    #    session[:user_id] = @user.id
-    #    redirect_to @user
-    #  else
-    #    flash[:danger] = 'Invalid name/password combination'
-    #    redirect_to login_path
-    #  end
+    #render 'welcome/home'
+    if !params[:session][:name].nil?
+      @user = User.find_by(name: params[:session][:name])
+      if @user && @user.authenticate(params[:session][:password])
+        session[:user_id] = @user.id
+        redirect_to @user
+      else
+        flash[:danger] = 'Invalid name/password combination'
+        redirect_to login_path
+      end
     #else
     #  @user = User.find_or_create_by(uid: auth['uid']) do |u|
     #    u.name = auth['info']['name']
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
     #  end
     #  session[:user_id] = @user.id
     #  rendirect_to @user
-    #end
+    end
   end
 
   def destroy
