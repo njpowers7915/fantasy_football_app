@@ -10,6 +10,7 @@ class TeamsController < ApplicationController
     @team.user = @user
     if @team.save
       session[:team_id] = @team.id
+      @user.save
       redirect_to user_team_path(@user, @team)
     else
       render 'new'
@@ -20,7 +21,7 @@ class TeamsController < ApplicationController
     if Team.find_by_id(params[:id])
       @team = Team.find_by_id(params[:id])
       session[:team_id] = @team.id
-      @user = User.find_by_id(sessions[:user_id])
+      @user = User.find_by_id(session[:user_id])
       @players = @team.players
     end
   end
@@ -44,7 +45,7 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :user_id)
+    params.require(:team).permit(:name, :user_id, :league_id)
   end
 
 end
