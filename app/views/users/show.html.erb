@@ -21,9 +21,9 @@
 <br>
 
 <% if is_admin? %>
-  <h4><%= link_to "Create League", new_team_path %></h4>
+  <h4><%= link_to "Create League", new_user_team_path(@user, @team) %></h4>
 <% else %>
-    <h4><%= link_to "Create Team", new_team_path %></h4>
+    <h4><%= link_to "Create Team", new_user_team_path(@user, @team) %></h4>
 <% end %>
 <br>
 
