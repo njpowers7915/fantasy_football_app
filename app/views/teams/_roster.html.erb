@@ -7,70 +7,59 @@
     </tr>
 
     <tr>
-      <th>Hooker</th>
-      <% if @team.get_hooker.nil? %>
+      <th>QB</th>
+      <% if @team.get_qb.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= link_to @team.get_hooker.name, player_path(@team.get_hooker) %></th>
-        <th><%= @team.get_hooker.points %></th>
-        <th><%= @team.get_hooker.salary %></th>
+        <th><%= link_to @team.get_qb.name, player_path(@team.get_qb) %></th>
+        <th><%= @team.get_qb.points %></th>
+        <th><%= @team.get_qb.salary %></th>
       <% end %>
     </tr>
 
     <tr>
-      <th>Front Row</th>
-      <% if @team.get_front_row.nil? %>
+      <th>RB</th>
+      <% if @team.get_rb.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= link_to @team.get_front_row.name, player_path(@team.get_front_row) %></th>
-        <th><%= @team.get_front_row.points %></th>
-        <th><%= @team.get_front_row.salary %></th>
+        <th><%= link_to @team.get_rb.name, player_path(@team.get_rb) %></th>
+        <th><%= @team.get_rb.points %></th>
+        <th><%= @team.get_rb.salary %></th>
       <% end %>
     </tr>
 
     <tr>
-      <th>Second Row</th>
-      <% if @team.get_second_row.nil? %>
+      <th>WR</th>
+      <% if @team.get_wr.nil? %>
         <th><%= render 'add_player' %></th>
         <th></th>
         <th></th>
       <% else %>
-        <th><%= link_to @team.get_second_row.name, player_path(@team.get_second_row) %></th>
-        <th><%= @team.get_second_row.points %></th>
-        <th><%= @team.get_second_row.salary %></th>
+        <th><%= link_to @team.get_wr.name, player_path(@team.get_wr) %></th>
+        <th><%= @team.get_wr.points %></th>
+        <th><%= @team.get_wr.salary %></th>
       <% end %>
     </tr>
 
     <tr>
-      <th>Half</th>
-      <% if @team.get_half.nil? %>
+      <th>TE</th>
+      <% if @team.get_te.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= link_to @team.get_half.name, player_path(@team.get_half) %></th>
-        <th><%= @team.get_half.points %></th>
-        <th><%= @team.get_half.salary %></th>
+        <th><%= link_to @team.get_te.name, player_path(@team.get_te) %></th>
+        <th><%= @team.get_te.points %></th>
+        <th><%= @team.get_te.salary %></th>
       <% end %>
     </tr>
 
     <tr>
-      <th>Centre</th>
+      <th>Defense</th>
       <% if @team.get_centre.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= link_to @team.get_centre.name, player_path(@team.get_centre) %></th>
-        <th><%= @team.get_centre.points %></th>
-        <th><%= @team.get_centre.salary %></th>
-      <% end %>
-    </tr>
-
-    <tr>
-      <th>Outside Back</th>
-      <% if @team.get_outside_back.nil? %>
-        <th><%= render 'add_player' %></th>
-      <% else %>
-        <th><%= link_to @team.get_outside_back.name, player_path(@team.get_outside_back) %></th>
-        <th><%= @team.get_outside_back.points %></th>
-        <th><%= @team.get_outside_back.salary %></th>
+        <th><%= link_to @team.get_d.name, player_path(@team.get_d) %></th>
+        <th><%= @team.get_d.points %></th>
+        <th><%= @team.get_d.salary %></th>
       <% end %>
     </tr>
 

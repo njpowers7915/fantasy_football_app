@@ -1,0 +1,28 @@
+<h4>Stats Leaders</h4><br>
+  <table style='width:50%'>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Pro Team</th>
+        <th>Points</th>
+        <th>TDs</th>
+        <th>Pass Yds</th>
+        <th>Rush Yds</th>
+        <th>Receptions</th>
+        <th>Rec Yds</th>
+      </tr>
+      <% @players.each_with_index do |player, i| %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= link_to player.name, player_path(player) %></td>
+        <td><%= player.position %></td>
+        <td><%= player.pro_team %></td>
+        <td><%= player.points %></td>
+        <td><%= player.tds %></td>
+        <td><%= player.pass_yards %></td>
+        <td><%= player.rush_yards %></td>
+        <td><%= player.receptions%></td>
+        <td><%= player.rec_yards %></td>
+      </tr>
+      <% end %>
+</table>

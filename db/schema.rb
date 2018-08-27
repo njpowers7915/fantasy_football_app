@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 2018_08_26_150031) do
     t.integer "salary"
     t.integer "points", default: 0
     t.string "pro_team"
-    t.integer "tries", default: 0
-    t.integer "goals", default: 0
-    t.integer "line_breaks", default: 0
-    t.integer "tackles", default: 0
-    t.integer "run_metres", default: 0
+    t.integer "touchdowns", default: 0
+    t.integer "pass_yards", default: 0
+    t.integer "rush_yards", default: 0
+    t.integer "receptions", default: 0
+    t.integer "rec_yards", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
