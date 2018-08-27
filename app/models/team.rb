@@ -15,11 +15,14 @@ class Team < ApplicationRecord
   def delete_player(player)
     deleted_player = self.players.detect {|i| i == player}
     self.players -= [deleted_player]
+    self.save
+    self.update_points
+    self.update_salary(player)
   end
 
 
   def valid_addition?(player)
-    self.update_salary(player)
+    self.update_salary
     if self.available_salary < 0
       return false
     else
@@ -36,7 +39,11 @@ class Team < ApplicationRecord
   end
 
   def update_salary(player)
-    self.available_salary = self.available_salary - player.salary
+    salary = 12
+    self.players.each do |player|
+      salary -= player.salary
+    end
+    return salary
   end
 
   def get_qb

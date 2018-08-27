@@ -38,9 +38,11 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     @user = @team.user
-    if params["delete_player"]
-      @player = Player.find(params[:id])
+    if params["delete"]
+      @player = Player.find_by_id(params[:id])
       @team.delete_player(@player)
+      @team.update_points
+      @team.update_salary(@player)
       redirect_to user_team_path(@user, @team)
     else
       if @team.update_attributes(team_params)
@@ -74,7 +76,8 @@ class TeamsController < ApplicationController
         end
       end
     end
-    @team.update_points
+    @team.point_total = @team.update_points
+    @team.available_salary = @team.update_salary
   end
 
   def index
