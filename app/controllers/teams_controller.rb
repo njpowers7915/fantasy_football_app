@@ -10,6 +10,9 @@ class TeamsController < ApplicationController
     @team.user = @user
     if @team.save
       session[:team_id] = @team.id
+      if !@team.league.nil?
+        session[:league_id] = @team.league.id
+      end
       @user.save
       redirect_to user_team_path(@user, @team)
     else
@@ -35,7 +38,11 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     @user = @team.user
-    if !params["team"]["player"]["delete"]
+    if params["delete_player"]
+      @player = Player.find(params[:id])
+      @team.delete_player(@player)
+      redirect_to user_team_path(@user, @team)
+    else
       if @team.update_attributes(team_params)
         if params["team"]["player"] && !params["team"]["player"].empty?
           player_array = params["team"]["player"].split(" --- ")

@@ -12,6 +12,12 @@ class Team < ApplicationRecord
     end
   end
 
+  def delete_player(player)
+    deleted_player = self.players.detect {|i| i == player}
+    self.players -= [deleted_player]
+  end
+
+
   def valid_addition?(player)
     self.update_salary(player)
     if self.available_salary < 0

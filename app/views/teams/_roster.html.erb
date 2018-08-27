@@ -14,6 +14,7 @@
         <th><%= link_to @team.get_qb.name, player_path(@team.get_qb) %></th>
         <th><%= @team.get_qb.points %></th>
         <th><%= @team.get_qb.salary %></th>
+        <th><%= render partial: 'delete_player', locals: {player: @team.get_qb} %></th>
       <% end %>
     </tr>
 
@@ -25,6 +26,7 @@
         <th><%= link_to @team.get_rb.name, player_path(@team.get_rb) %></th>
         <th><%= @team.get_rb.points %></th>
         <th><%= @team.get_rb.salary %></th>
+        <th><%= render partial: 'delete_player', locals: {player: @team.get_rb} %></th>
       <% end %>
     </tr>
 
@@ -38,6 +40,7 @@
         <th><%= link_to @team.get_wr.name, player_path(@team.get_wr) %></th>
         <th><%= @team.get_wr.points %></th>
         <th><%= @team.get_wr.salary %></th>
+        <th><%= render partial: 'delete_player', locals: {player: @team.get_wr} %></th>
       <% end %>
     </tr>
 
@@ -49,6 +52,7 @@
         <th><%= link_to @team.get_te.name, player_path(Player.find_by(name: @team.get_te.name)) %></th>
         <th><%= @team.get_te.points %></th>
         <th><%= @team.get_te.salary %></th>
+        <th><%= render partial: 'delete_player', locals: {player: @team.get_te} %></th>
       <% end %>
     </tr>
 
@@ -60,6 +64,7 @@
         <th><%= link_to @team.get_d.name, player_path(@team.get_d) %></th>
         <th><%= @team.get_d.points %></th>
         <th><%= @team.get_d.salary %></th>
+        <th><%= render partial: 'delete_player', locals: {player: @team.get_d} %></th>
       <% end %>
     </tr>
 

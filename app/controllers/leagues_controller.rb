@@ -23,9 +23,9 @@ class LeaguesController < ApplicationController
     end
 
     def show
-      if League.find_by_id(params[:id])
-        @league = League.find_by_id(params[:id])
-        session[:league_id] = @league.id
+      if League.find_by_id(session[:league_id])
+        @league = League.find_by_id(session[:league_id])
+        #session[:league_id] = @league.id
         @user = User.find_by_id(session[:user_id])
         @teams = @league.teams
         @comments = @league.comments
@@ -42,7 +42,6 @@ class LeaguesController < ApplicationController
       @user = User.find_by_id(session[:user_id])
       if params["join_league"]
         @team.join_league(@league)
-        @team.save
         redirect_to user_team_path(@user, @team)
       end
     end
