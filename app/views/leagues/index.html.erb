@@ -1,7 +1,16 @@
-Find a League to Join
-
-<ul>
-<% @leagues.each do |league| %>
-  <li><%= league.name %> - Admin: <%= User.find_by_id(league.admin_id).name %> - <%= render partial: 'teams/join_league', locals: {team: team} %></td>
-<% end %>
-</ul>
+<h3>Find a League to Join</h3>
+<br>
+<table style='width:50%'>
+  <tr>
+    <th>League</th>
+    <th>Admin</th>
+    <th>Join League</th>
+  <tr/>
+  <% @leagues.each do |league| %>
+  <tr>
+    <th><%= league.name %></th>
+    <th><%= User.find_by_id(league.admin_id).name %></th>
+    <th><%= render partial: 'join_league', locals: {league: league} %></th>
+  </tr>
+  <% end %>
+</table>

@@ -1,7 +1,6 @@
-<%= form_for team do |f| %>
-  <%= f.hidden_field :name %><br>
-  <%= f.hidden_field :user_id %><br>
-  <%= f.hidden_field :league_id %><br>
+<%= form_for league do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :admin_id %>
   <input type='hidden' id="join_league" name="join_league" >
 
   <%= f.submit "JOIN" %>

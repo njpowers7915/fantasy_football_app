@@ -5,6 +5,13 @@ class Team < ApplicationRecord
   has_many :teams_players
   has_many :players, through: :teams_players
 
+  def join_league(league)
+    if self.league.nil?
+      self.league = league
+      self.save
+    end
+  end
+
   def valid_addition?(player)
     self.update_salary(player)
     if self.available_salary < 0

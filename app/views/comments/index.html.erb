@@ -9,7 +9,7 @@
   <ul>
     <% @comments.each do |comment| %>
     <li>"<%= comment.content %>"<br>
-    --> <%= comment.team.user.name %> -- <%= comment.created_at.strftime("%b-%d  %I:%M %p") %></li><br>
+    <%= comment.team.user.name %> -- <%= comment.created_at.strftime("%b-%d  %I:%M %p") %></li><br>
     <% end %>
   </ul>
 <% end %>

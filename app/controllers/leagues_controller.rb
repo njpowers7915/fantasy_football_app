@@ -19,6 +19,7 @@ class LeaguesController < ApplicationController
 
     def index
       @leagues = League.all
+      @team = Team.find_by_id(session[:team_id])
     end
 
     def show
@@ -32,11 +33,18 @@ class LeaguesController < ApplicationController
     end
 
     def edit
-
+      @league = League.find(params[:id])
     end
 
     def update
-
+      @league = League.find(params[:id])
+      @team = Team.find_by_id(session[:team_id])
+      @user = User.find_by_id(session[:user_id])
+      if params["join_league"]
+        @team.join_league(@league)
+        @team.save
+        redirect_to user_team_path(@user, @team)
+      end
     end
 
 
