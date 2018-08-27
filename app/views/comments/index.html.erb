@@ -1,6 +1,18 @@
 <h2>Message Board</h2>
+<br>
 
-<ul>
-<% @comments.each do |comment| %>
-  <li><%= comment.created_at %> -- "<%= comment.content %>"<br>
-    -- <%= comment.team.user.name %><li><br>
+<%= link_to "Create New Message", new_league_comment_path(@league, @comment)%>
+
+<% if @comments.empty? %>
+  <h4>No messages have been posted yet!</h4>
+<% else %>
+  <ul>
+    <% @comments.each do |comment| %>
+    <li>"<%= comment.content %>"<br>
+    --> <%= comment.team.user.name %> -- <%= comment.created_at.strftime("%b-%d  %I:%M %p") %></li><br>
+    <% end %>
+  </ul>
+<% end %>
+<br>
+
+<h4>Return to <%= link_to @league.name, league_path(@league) %> homepage<h4>

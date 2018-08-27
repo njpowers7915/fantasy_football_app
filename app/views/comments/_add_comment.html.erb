@@ -1,0 +1,8 @@
+<%= form_for ([@league, @comment]) do |f| %>
+  <label for="league_comment">Post Message: </label>
+  <%= f.text_area :content %>
+
+  <%= f.submit "+" %>
+  <br>
+  <br>
+<% end %>
