@@ -6,11 +6,11 @@ class CreatePlayers < ActiveRecord::Migration[5.2]
       t.integer :salary
       t.integer :points, default: 0
       t.string :pro_team
-      t.integer :tries, default: 0
-      t.integer :goals, default: 0
-      t.integer :line_breaks, default: 0
-      t.integer :tackles, default: 0
-      t.integer :run_metres, default: 0
+      t.integer :touchdowns, default: 0
+      t.integer :pass_yards, default: 0
+      t.integer :rush_yards, default: 0
+      t.integer :receptions, default: 0
+      t.integer :rec_yards, default: 0
       t.timestamps
     end
   end

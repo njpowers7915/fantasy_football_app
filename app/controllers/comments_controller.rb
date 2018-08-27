@@ -11,7 +11,8 @@ class CommentsController < ApplicationController
     @comment.team = Team.find(session[:team_id])
     if @comment.save
       @comment.save
-      redirect_to league_comments_path(@league, @league.comments)
+      @league.save
+      redirect_to league_comments_path(@league)
     else
       render 'new'
     end
@@ -21,7 +22,7 @@ class CommentsController < ApplicationController
 
 
   def index
-    @league = League.find_by_id(session[:league_id])
+    @league = League.find_by_id(params[:league_id])
     @team = Team.find_by_id(session[:team_id])
     @comments = @league.comments
   end

@@ -1,0 +1,7 @@
+Find a League to Join
+
+<ul>
+<% @leagues.each do |league| %>
+  <li><%= league.name %> - Admin: <%= User.find_by_id(league.admin_id).name %></td>
+<% end %>
+</ul>

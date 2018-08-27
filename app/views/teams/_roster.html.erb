@@ -46,7 +46,7 @@
       <% if @team.get_te.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= link_to @team.get_te.name, player_path(@team.get_te) %></th>
+        <th><%= link_to @team.get_te.name, player_path(Player.find_by(name: @team.get_te.name)) %></th>
         <th><%= @team.get_te.points %></th>
         <th><%= @team.get_te.salary %></th>
       <% end %>
@@ -54,7 +54,7 @@
 
     <tr>
       <th>Defense</th>
-      <% if @team.get_centre.nil? %>
+      <% if @team.get_d.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
         <th><%= link_to @team.get_d.name, player_path(@team.get_d) %></th>

@@ -26,27 +26,24 @@ class Team < ApplicationRecord
     self.available_salary = self.available_salary - player.salary
   end
 
-  def get_hooker
+  def get_qb
     self.players.where(position_id: 1).first
   end
 
-  def get_front_row
+  def get_rb
     self.players.where(position_id: 2).first
   end
 
-  def get_second_row
+  def get_wr
     self.players.where(position_id: 3).first
   end
 
-  def get_half
+  def get_te
     self.players.where(position_id: 4).first
   end
 
-  def get_centre
+  def get_d
     self.players.where(position_id: 5).first
   end
 
-  def get_outside_back
-    self.players.where(position_id: 6).first
-  end
 end

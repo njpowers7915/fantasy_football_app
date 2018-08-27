@@ -1,6 +1,6 @@
 class LeaguesController < ApplicationController
   def new
-    @league = League.new(league_params)
+    @league = League.new
   end
 
   def create
