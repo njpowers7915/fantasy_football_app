@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only[:show]
+  before_action :set_player, only: [:show]
 
   def show
     render json: @player

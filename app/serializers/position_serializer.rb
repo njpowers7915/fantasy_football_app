@@ -1,4 +1,4 @@
-class PositionSerializer < ActiveModel::Serializer
+class PositionSerializer < ApplicationSerializer
   attributes :id, :name
-  has_many :players
+  #has_many :players
 end

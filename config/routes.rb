@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:new, :create, :show, :index]
   end
   resources :players
+  resources :positions, only: [:show]
 
   #resources :comments
   #resources :leagues
