@@ -55,11 +55,9 @@ Comment.create(content: 'Steve 2', league_id: 1, team_id: 1)
 Comment.create(content: 'Bill 1', league_id: 1, team_id: 2)
 Comment.create(content: 'Bill 2', league_id: 2, team_id: 5)
 
-
-team_players = TeamsPlayers.create([{team_id: 1, player_id: 1}, {team_id: 1, player_id: 8}, {team_id: 1, player_id: 11},
-  {team_id: 1, player_id: 14}, {team_id: 1, player_id: 20}, {team_id: 2, player_id: 2}, {team_id: 2, player_id: 6},
-  {team_id: 2, player_id: 9}, {team_id: 2, player_id: 16}, {team_id: 2, player_id: 19}, {team_id: 3, player_id: 1},
-  {team_id: 3, player_id: 8}, {team_id: 3, player_id: 11}, {team_id: 3, player_id: 16}, {team_id: 3, player_id: 20},
-  {team_id: 4, player_id: 2}, {team_id: 4, player_id: 5}, {team_id: 4, player_id: 11}, {team_id: 4, player_id: 14},
-  {team_id: 4, player_id: 17}, {team_id: 5, player_id: 1}, {team_id: 5, player_id: 6}, {team_id: 5, player_id: 12},
-  {team_id: 5, player_id: 16}, {team_id: 5, player_id: 20}])
+teams = Team.all
+teams[0].players = Player.where(id: [1, 8, 11, 14, 20])
+teams[1].players = Player.where(id: [2, 6, 9, 16, 19])
+teams[2].players = Player.where(id: [1, 8, 11, 14, 17])
+teams[3].players = Player.where(id: [2, 5, 11, 14, 17])
+teams[4].players = Player.where(id: [1, 6, 12, 16, 20])
