@@ -42,7 +42,7 @@ class TeamsController < ApplicationController
       @player = Player.find_by_id(params[:id])
       @team.delete_player(@player)
       @team.update_points
-      @team.update_salary(@player)
+      @team.update_salary
       redirect_to user_team_path(@user, @team)
     else
       if @team.update_attributes(team_params)
@@ -76,7 +76,7 @@ class TeamsController < ApplicationController
         end
       end
     end
-    @team.point_total = @team.update_points
+    @team.points_total = @team.update_points
     @team.available_salary = @team.update_salary
   end
 

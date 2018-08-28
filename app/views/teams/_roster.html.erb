@@ -11,10 +11,10 @@
       <% if @team.get_qb.nil? %>
         <th><%= render 'add_player' %></th>
       <% else %>
-        <th><%= link_to @team.get_qb.name, player_path(@team.get_qb) %></th>
-        <th><%= @team.get_qb.points %></th>
-        <th><%= @team.get_qb.salary %></th>
-        <th><%= render partial: 'delete_player', locals: {player: @team.get_qb} %></th>
+          <th id="team_qb"><%= @team.get_qb.name %></th>
+          <th><%= @team.get_qb.points %></th>
+          <th><%= @team.get_qb.salary %></th>
+          <th><%= render partial: 'delete_player', locals: {player: @team.get_qb} %></th>
       <% end %>
     </tr>
 

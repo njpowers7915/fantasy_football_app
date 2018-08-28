@@ -16,4 +16,4 @@
 //= require activestorage
 //= require turbolinks
 //= require fantasy
-//= require_tree .
+// require_tree .

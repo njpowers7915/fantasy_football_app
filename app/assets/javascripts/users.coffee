@@ -10,6 +10,12 @@ function attachListeners() {
   $('#player_stats').on('click', () => getPlayerStats());
 }
 
-function getPlayerStats(stat_category) {
- 
+function getPlayerStats() {
+  stats = $.get('/players', (player) => {
+    return players.data.attributes
+    })
+}
+
+function sortByStat(stat_name) {
+
 }
