@@ -31,7 +31,16 @@
 <% end %>
 <br>
 
-<h4><%= link_to "Playler Stats", players_path %></h4><br>
+<div id="player_stats">Stat Leaders: <select>
+  <option value="points">Total Points</option>
+  <option value="touchdowns">Touchdowns</option>
+  <option value="pass_yards">Pass Yards</option>
+  <option value="rush_yards">Rush Yards</option>
+  <option value="receptions">Receptions</option>
+  <option value="receptions">Rec. Yards</option>
+</select>
+  <button id="submit_player_stats">Submit</button>
+</div>
 
 <!-- <h4><%= link_to "Most Popular Songs", '/songs/most_popular' %></h4><br> -->
 <!-- CREATE CUSTOM ROUTES !!! -->
