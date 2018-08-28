@@ -34,9 +34,32 @@ Player.create(name: 'Seahawks Defense', position_id: 5, salary: 2, pro_team: 'Se
 Player.create(name: 'Eagles Defense', position_id: 5, salary: 2, pro_team: 'Eagles')
 Player.create(name: 'Bears Defense', position_id: 5, salary: 1, pro_team: 'Bears')
 
-User.create(name: 'Steve', email: 'steve@gmail.com', password_digest: '1121')
+User.create(name: 'Steve', email: 'steve@gmail.com', admin: true, password_digest: '1121')
 User.create(name: 'Nathan', email: 'nathan@gmail.com', password_digest: '121')
 User.create(name: 'Bill', email: 'bill@gmail.com', password_digest: '11')
 User.create(name: 'Sarah', email: 'sarah@gmail.com', password_digest: '11231')
 User.create(name: 'Tommy', email: 'tommy@gmail.com', password_digest: '14121')
 User.create(name: 'Rob', email: 'rob@gmail.com', password_digest: '51121')
+
+League.create(name: 'Steve League', admin_id: 1)
+League.create(name: 'Nathan League', admin_id: 2)
+
+Team.create(name: 'Giants', user_id: 1, league_id: 1)
+Team.create(name: 'Redskins', user_id: 3, league_id: 1)
+Team.create(name: 'Eagles', user_id: 4, league_id: 1)
+Team.create(name: 'Patriots', user_id: 2, league_id: 2)
+Team.create(name: 'Bills', user_id: 3, league_id: 2)
+
+Comment.create(content: 'Steve 1', league_id: 1, team_id: 1)
+Comment.create(content: 'Steve 2', league_id: 1, team_id: 1)
+Comment.create(content: 'Bill 1', league_id: 1, team_id: 2)
+Comment.create(content: 'Bill 2', league_id: 2, team_id: 5)
+
+
+team_players = TeamsPlayers.create([{team_id: 1, player_id: 1}, {team_id: 1, player_id: 8}, {team_id: 1, player_id: 11},
+  {team_id: 1, player_id: 14}, {team_id: 1, player_id: 20}, {team_id: 2, player_id: 2}, {team_id: 2, player_id: 6},
+  {team_id: 2, player_id: 9}, {team_id: 2, player_id: 16}, {team_id: 2, player_id: 19}, {team_id: 3, player_id: 1},
+  {team_id: 3, player_id: 8}, {team_id: 3, player_id: 11}, {team_id: 3, player_id: 16}, {team_id: 3, player_id: 20},
+  {team_id: 4, player_id: 2}, {team_id: 4, player_id: 5}, {team_id: 4, player_id: 11}, {team_id: 4, player_id: 14},
+  {team_id: 4, player_id: 17}, {team_id: 5, player_id: 1}, {team_id: 5, player_id: 6}, {team_id: 5, player_id: 12},
+  {team_id: 5, player_id: 16}, {team_id: 5, player_id: 20}])
