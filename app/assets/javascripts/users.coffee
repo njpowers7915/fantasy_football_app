@@ -12,13 +12,13 @@
 
 #function getPlayerStats() {
 #  var stat = $('option:selected')[0].value
-#  sortByStat(stat)
+#  var list = sortByStat(stat)
 #}
 
-#function sortByStat(stat_name) {
-#  var players = $.getJSON('/players').responseJSON['data']
-#  var statList = []
-#  players.forEach(function (player) {
-#    statList.push([player.attributes.name], [player.attributes.stat_name])
-#    })
+#var sortByStat = function (stat) {
+#  var players = $.getJSON('/players')
+#  var playerData = players.responseJSON['data']
+#  var orderedList = _.orderBy(playerData, ['attributes.${stat}', 'attributes.name'], ['desc', 'asc'])
+#  var slicedList = _.slice(orderedList, 0, 10)
+#  return slicedList
 #}
