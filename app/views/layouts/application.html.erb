@@ -22,7 +22,7 @@
 
 
         <% if logged_in? %>
-          <a class="navbar-brand" href="<%= user_path(current_user) %>"/>Your Profile</a>
+          <a class="navbar-brand" href="<%= user_path(current_user) %>"/>Fantasy Homepage</a>
           <a class="navbar-brand" href="<%= logout_path %>"/>Logout</a>
         <% else %>
           <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
