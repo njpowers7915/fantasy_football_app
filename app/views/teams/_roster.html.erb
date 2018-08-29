@@ -8,12 +8,12 @@
 
     <% Position.all.each do |position| %>
       <% if @team.get(position).nil? %>
-        <tr>
+        <tr class="player_profile" id="team_<%=position.name %>">
           <th><%= position.name %></th>
           <th><%= render 'add_player' %></th>
         </tr>
       <% else %>
-        <tr id="player_profile" player_id="<%=@team.get(position).id %>">
+        <tr class="player_profile" id="team_<%=position.name %>" player_id="<%=@team.get(position).id %>">
           <th><%= position.name %></th>
           <th id="player_profile" player_id="<%=@team.get(position).id %>"><%= @team.get(position).name %></th>
           <th><%= @team.get(position).points %></th>

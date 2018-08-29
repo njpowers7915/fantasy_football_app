@@ -32,7 +32,7 @@ class TeamsController < ApplicationController
   def edit
     @team = Team.find(params[:id])
     @user = @team.user
-    #@players = Player.all
+    @players = Player.get_by(position)
   end
 
   def update
