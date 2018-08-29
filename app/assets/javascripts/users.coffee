@@ -2,20 +2,23 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready(function() {
-  attachListeners();
-});
+#$(document).ready(function() {
+#  attachListeners();
+#});
 
-function attachListeners() {
-  $('#player_stats').on('click', () => getPlayerStats());
-}
+#function attachListeners() {
+#  $('#player_stats').on('click', () => getPlayerStats());
+#}
 
-function getPlayerStats() {
-  stats = $.get('/players', (player) => {
-    return players.data.attributes
-    })
-}
+#function getPlayerStats() {
+#  var stat = $('option:selected')[0].value
+#  sortByStat(stat)
+#}
 
-function sortByStat(stat_name) {
-
-}
+#function sortByStat(stat_name) {
+#  var players = $.getJSON('/players').responseJSON['data']
+#  var statList = []
+#  players.forEach(function (player) {
+#    statList.push([player.attributes.name], [player.attributes.stat_name])
+#    })
+#}
