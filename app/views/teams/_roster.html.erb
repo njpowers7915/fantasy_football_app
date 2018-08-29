@@ -6,66 +6,18 @@
       <th>Salary</th>
     </tr>
 
-    <tr>
-      <th>QB</th>
-      <% if @team.get_qb.nil? %>
-        <th><%= render 'add_player' %></th>
-      <% else %>
-          <th id="team_qb"><%= @team.get_qb.name %></th>
-          <th><%= @team.get_qb.points %></th>
-          <th><%= @team.get_qb.salary %></th>
-          <th><%= render partial: 'delete_player', locals: {player: @team.get_qb} %></th>
+    <% Position.all.each do |position| %>
+      <tr>
+        <th><%= position.name %></th>
+        <% if @team.get(position).nil? %>
+          <th><%= render 'add_player' %></th>
+        <% else %>
+          <th id="player_profile" player_id="<%=@team.get(position).id %>"><%= @team.get(position).name %></th>
+          <th><%= @team.get(position).points %></th>
+          <th><%= @team.get(position).salary %></th>
+          <th><%= render partial: 'delete_player', locals: {player: @team.get(position)} %></th>
       <% end %>
     </tr>
-
-    <tr>
-      <th>RB</th>
-      <% if @team.get_rb.nil? %>
-        <th><%= render 'add_player' %></th>
-      <% else %>
-        <th><%= link_to @team.get_rb.name, player_path(@team.get_rb) %></th>
-        <th><%= @team.get_rb.points %></th>
-        <th><%= @team.get_rb.salary %></th>
-        <th><%= render partial: 'delete_player', locals: {player: @team.get_rb} %></th>
-      <% end %>
-    </tr>
-
-    <tr>
-      <th>WR</th>
-      <% if @team.get_wr.nil? %>
-        <th><%= render 'add_player' %></th>
-        <th></th>
-        <th></th>
-      <% else %>
-        <th><%= link_to @team.get_wr.name, player_path(@team.get_wr) %></th>
-        <th><%= @team.get_wr.points %></th>
-        <th><%= @team.get_wr.salary %></th>
-        <th><%= render partial: 'delete_player', locals: {player: @team.get_wr} %></th>
-      <% end %>
-    </tr>
-
-    <tr>
-      <th>TE</th>
-      <% if @team.get_te.nil? %>
-        <th><%= render 'add_player' %></th>
-      <% else %>
-        <th><%= link_to @team.get_te.name, player_path(Player.find_by(name: @team.get_te.name)) %></th>
-        <th><%= @team.get_te.points %></th>
-        <th><%= @team.get_te.salary %></th>
-        <th><%= render partial: 'delete_player', locals: {player: @team.get_te} %></th>
-      <% end %>
-    </tr>
-
-    <tr>
-      <th>Defense</th>
-      <% if @team.get_d.nil? %>
-        <th><%= render 'add_player' %></th>
-      <% else %>
-        <th><%= link_to @team.get_d.name, player_path(@team.get_d) %></th>
-        <th><%= @team.get_d.points %></th>
-        <th><%= @team.get_d.salary %></th>
-        <th><%= render partial: 'delete_player', locals: {player: @team.get_d} %></th>
-      <% end %>
-    </tr>
+    <% end %>
 
   </table>

@@ -46,8 +46,8 @@ class Team < ApplicationRecord
     return salary
   end
 
-  def get_qb
-    self.players.where(position_id: 1).first
+  def get(position)
+    self.players.where(position_id: position.id).first
   end
 
   def get_rb
