@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
   def index
     @league = League.find_by_id(params[:league_id])
     @team = Team.find_by_id(session[:team_id])
-    @comments = @league.comments
+    @comments = @league.comments.order("created_at DESC")
   end
 
   def show

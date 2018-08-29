@@ -50,20 +50,4 @@ class Team < ApplicationRecord
     self.players.where(position_id: position.id).first
   end
 
-  def get_rb
-    self.players.where(position_id: 2).first
-  end
-
-  def get_wr
-    self.players.where(position_id: 3).first
-  end
-
-  def get_te
-    self.players.where(position_id: 4).first
-  end
-
-  def get_d
-    self.players.where(position_id: 5).first
-  end
-
 end
