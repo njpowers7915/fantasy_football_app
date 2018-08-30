@@ -1,5 +1,3 @@
-<h4>Create Team</h4>
-<br>
 <%= form_for ([@user, @team]) do |f| %>
   <div class="field">
     <h4>Team Name: <%= f.text_field :name %></h4>
@@ -12,14 +10,16 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
     $('form').submit(function(event) {
-      //prevent form from submitting the default way
+
       event.preventDefault();
+
       var values = $(this).serialize();
       var newTeam = $.post('/teams', values);
+
       team.done(function(data) {
-        // TODO: handle response
-      })
-      alert("we r hack3rz");
+        var team = data
+        $("#existingTeams").append("<h4>team["name"]</h4>")
+      });
     });
   });
 </script>

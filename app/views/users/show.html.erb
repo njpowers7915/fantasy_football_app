@@ -10,25 +10,30 @@
 
 <h2>Welcome <%= @user.name %>!</h2><br>
 
-<% if !@user.teams.empty? %>
-  <h4>Your Teams:</h4><br>
-    <ul>
-      <% @user.teams.each do |team| %>
-        <li><%= link_to team.name, user_team_path(@user, team) %>
-          <% if !team.league.nil? %>
-          -- <%= link_to team.league.name, league_path(team.league) %>
-
-          <%end%></li>
-      <% end %>
-    </ul>
-<% end %>
-<br>
+<div id="existingTeams">
+  <% if !@user.teams.empty? %>
+    <h4>Your Teams:</h4><br>
+  <% end %>
+</div>
 
 <% if is_admin? %>
-  <h4><%= link_to "Create League", new_user_team_path(@user, @team) %></h4>
+  <div class="newLeague">
+    <h4><%= link_to "Create League", new_user_team_path(@user, @team) %></h4>
+  </div>
 <% else %>
-    <h4><%= link_to "Create New Team", new_user_team_path(@user, @team) %></h4>
+  <div id="newTeam">
+    <h4><a href='#' onclick='createNewTeamForm()'>Create New Team</a></h4>
+    <br>
+    <div id="newTeamForm"></div>
+  </div>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $('#newTeamForm').html("<%= render 'team/new_team' %>")
+})
+</script>
+
 <br>
 
 <div id="player_stats">Stat Leaders: <select id="stat_dropdown">
