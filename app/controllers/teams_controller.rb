@@ -5,19 +5,11 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(team_params)
+    @team = Team.create(team_params)
     @user = User.find(params[:user_id])
     @team.user = @user
-    if @team.save
-      session[:team_id] = @team.id
-      if !@team.league.nil?
-        session[:league_id] = @team.league.id
-      end
-      @user.save
-      redirect_to user_team_path(@user, @team)
-    else
-      render 'new'
-    end
+    session[:team_id] = @team.id
+    render json: @team, status: 201
   end
 
   def show
@@ -32,7 +24,7 @@ class TeamsController < ApplicationController
   def edit
     @team = Team.find(params[:id])
     @user = @team.user
-    @players = Player.get_by(position)
+    #@players = Player.get_by(position)
   end
 
   def update
