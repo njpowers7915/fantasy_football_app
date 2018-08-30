@@ -1,6 +1,7 @@
-<%= form_for ([@user, @team]) do |f| %>
+<%= form_for [@user, @team], remote: true do |f| %>
   <div class="field">
-    <h4>Team Name: <%= f.text_field :name %></h4>
+    <h4>Team Name:
+    <%= f.text_field :name %></h4>
   </div>
   <div class="actions">
     <%= f.submit "Create Team" %>
@@ -12,13 +13,13 @@
     $('form').submit(function(event) {
 
       event.preventDefault();
-
+      debugger
       var values = $(this).serialize();
       var newTeam = $.post('/teams', values);
 
-      team.done(function(data) {
+      newTeam.done(function(data) {
         var team = data
-        $("#existingTeams").append("<h4>team["name"]</h4>")
+        $("#existingTeams").html(data.name)
       });
     });
   });

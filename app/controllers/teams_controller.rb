@@ -2,11 +2,12 @@ class TeamsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @team = @user.teams.build(user_id: params[:id])
+    render json: @team
   end
 
   def create
-    @team = Team.create(team_params)
     @user = User.find(params[:user_id])
+    @team = Team.create(team_params)
     @team.user = @user
     session[:team_id] = @team.id
     render json: @team, status: 201

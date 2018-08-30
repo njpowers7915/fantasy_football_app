@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @team = Team.new
     @message = params[:message] if params[:message]
     @message ||= false
 

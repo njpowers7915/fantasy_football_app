@@ -29,9 +29,10 @@
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-$(function () {
-  $('#newTeamForm').html("<%= render 'teams/new' %>")
-})
+function createNewTeamForm() {
+  event.preventDefault();
+  $('#newTeamForm').html("<%= j (render 'teams/new_team') %>")
+}
 </script>
 
 <br>
