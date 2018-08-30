@@ -10,7 +10,7 @@
 #  $('#player_stats').on('click', () => getPlayerStats());
 #}
 
-#function getPlayerStats() {
+#var getPlayerStats = function () {
 #  var stat = $('option:selected')[0].value
 #  var list = sortByStat(stat)
 #}
@@ -20,5 +20,24 @@
 #  var playerData = players.responseJSON['data']
 #  var orderedList = _.orderBy(playerData, ['attributes.${stat}', 'attributes.name'], ['desc', 'asc'])
 #  var slicedList = _.slice(orderedList, 0, 10)
-#  return slicedList
+#  var pageOutput = []
+#  slicedList.forEach(function (e) {
+#    var individualPlayerInfo = {
+#      name: e.attributes["name"],
+#      position: e.attributes["position"]["name"],
+#      pro_team: e.attributes["pro-team"]],
+#      stat: e.attributes[stat]]
+#    }
+#    pageOutput.push(individualPlayerInfo)
+#    })
+#  return individualPlayerInfo
 #}
+
+function loadPlayers() {
+  var players =
+
+
+  var template = Handlebars.compile(document.getElementById("stat_leader_template").innerHTML);
+  var result = template(players);
+  document.getElementById("stat_leaders").innerHTML += result;
+}
