@@ -39,7 +39,7 @@
   <option value="receptions">Receptions</option>
   <option value="rec_yards">Rec. Yards</option>
 </select>
-  <button id="submit_player_stats" onclick='getByStat()'>Search</button>
+  <button id="submit_player_stats" onclick='loadPlayers()'>Search</button>
 </div>
 <div id="stat_leaders"></div>
 
@@ -51,12 +51,17 @@
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Points</th>
-          <th>Salary</th>
+          <th>Position</th>
+          <th>Pro-Team</th>
+          <th>Stat</th>
         </tr>
         {{#each this}}
         <tr>
-          <th></th>
+          <td></td>
+          <td>{{name}}</td>
+          <td>{{position}}</td>
+          <td>{{pro_team}}</td>
+          <th>{{stat}}</th>
         </tr>
         {{/each}}
       </table>
