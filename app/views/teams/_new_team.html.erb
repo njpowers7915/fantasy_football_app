@@ -3,6 +3,9 @@
     <h4>Team Name:
     <%= f.text_field :name %></h4>
   </div>
+  <div class="field">
+    <input type="hidden" id="team_user_id" name="team[user_id]" value='<%= @user.id %>' />
+  </div>
   <div class="actions">
     <%= f.submit "Create Team" %>
   </div>
@@ -19,7 +22,8 @@
 
       newTeam.done(function(data) {
         var team = data
-        $("#existingTeams").html(data.name)
+        debugger
+        $("#existingTeams").append(data["data"]["attributes"].name)
       });
     });
   });

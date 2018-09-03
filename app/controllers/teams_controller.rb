@@ -6,21 +6,21 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = User.find_by_id(session[:user_id])
     @team = Team.create(team_params)
-    @team.user = @user
+    #@team.user = @user
     session[:team_id] = @team.id
-    render json: @team, status: 201
+    render json: @team
   end
 
   def show
-    if Team.find_by_id(params[:id])
-      @team = Team.find_by_id(params[:id])
-      session[:team_id] = @team.id
-      @user = User.find_by_id(session[:user_id])
-      @players = @team.players
+    #if Team.find_by_id(params[:id])
+    #  @team = Team.find_by_id(params[:id])
+    #  session[:team_id] = @team.id
+    #  @user = User.find_by_id(session[:user_id])
+    #  @players = @team.players
       render json: @team
-    end
+    #end
   end
 
   def edit
@@ -76,12 +76,13 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.all
+    render json: @teams
   end
 
   private
 
   def team_params
-    params.require(:team).permit(:name, :user_id, :league_id)
+    params.require(:team).permit(:name, :user_id)
   end
 
 end

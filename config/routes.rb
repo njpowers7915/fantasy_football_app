@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   get '/logout', to: "sessions#destroy"
 
   resources :users do
-    resources :teams, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :teams
     #resources :leagues, only: [:new, :create, :show]
   end
 
-  resources :teams, only: [:index]
+  resources :teams
   resources :leagues do
     resources :comments, only: [:new, :create, :show, :index]
   end
