@@ -18,10 +18,12 @@ class TeamsController < ApplicationController
     #if Team.find_by_id(params[:id])
     @team = Team.find_by_id(params[:id])
     #  session[:team_id] = @team.id
-    #  @user = User.find_by_id(session[:user_id])
+    @user = User.find_by_id(session[:user_id])
     #  @players = @team.players
-    render json: @team
-    #end
+    respond_to do |format|
+      format.html
+      format.json { render json: @team }
+    end
   end
 
   def edit
