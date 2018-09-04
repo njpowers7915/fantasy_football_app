@@ -16,9 +16,9 @@
   </tr>
 
   <% @teams.each_with_index do |team, i| %>
-  <tr id="team_profile" team_id="<%= team.id %>">
+  <tr id="teamid-<%=team.id%>">
     <td><%= i + 1 %></td>
-    <td><a href='#' onclick="loadTeam('<%=team.id')"><%= team.name %></td>
+    <td><a href='#' onclick="loadTeam('<%=team.id%>')"><%= team.name %></td>
     <td><%= team.points_total %></td>
     <td><%= team.user.name %></td>
     </tr>
@@ -40,39 +40,31 @@ function viewMessageBoard() {
 </script>
 
 <script id="team-template" type="text/x-handlebars-template">
-    <h1>{{name}}</h1><br>
-    <h3>{{position}}</h3><br>
-
-    <h4>Salary: ${{salary}}</h4><br>
-    <h4>Points: ${{points}}</h4><br>
-
-    <h4>Stats</h4><br>
-      <p>TDs: {{touchdowns}}</p><br>
-      <p>Passing Yards: {{pass_yards}}</p><br>
-      <p>Rushing Yards: {{rush_yards}}</p><br>
-      <p>Receptions: {{receptions}}</p><br>
-      <p>Receiving Yards: {{rec_yards}}</p><br>
-</script>
+    <h4>{{name}} -- Points: {{points_total}} -- Owner: {{owner}}</h4><br>
+    <h4>Roster:</h4><br>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </script>
 
 <script type="text/javascript" charset="utf-8">
 function loadTeam(team_id) {
     event.preventDefault()
-    var url = '/players/' + player_id
+    var url = '/teams/' + team_id
     $.getJSON(url, function(data) {
-      var player = {
+      var team = {
         name: data.data.attributes.name,
-        position: data.data.attributes.position.name,
-        salary: data.data.attributes.salary,
-        points: data.data.attributes.points,
-        touchdowns: data.data.attributes.touchdowns,
-        pass_yards: data.data.attributes["pass-yards"],
-        rush_yards: data.data.attributes["rush-yards"],
-        receptions: data.data.attributes.receptions,
-        rec_yards: data.data.attributes["rec-yards"]
+        points_total: data.data.attributes.points_total,
+        owner: data.data.attributes.user.name,
+        //roster: data.data.attributes.points,
       }
-      var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
-      var result = template(player)
-      var element = Array.from($('#playerid-' + data.data.id))
+      var template = Handlebars.compile(document.getElementById("team-template").innerHTML)
+      var result = template(team)
+      var element = Array.from($('#teamid-' + data.data.id))
       debugger
       element[0].innerHTML = result
     })

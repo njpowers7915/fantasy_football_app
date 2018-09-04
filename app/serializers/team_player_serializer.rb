@@ -1,3 +1,5 @@
 class TeamPlayerSerializer < ApplicationSerializer
-  attributes :id, :team_id, :player_id
+  attributes :id, :team, :player
+  belongs_to :team
+  belongs_to :player
 end
