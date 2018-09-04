@@ -10,15 +10,11 @@
 
 <h2>Welcome <%= @user.name %>!</h2><br>
 
-
-<% if !@user.teams.empty? %>
-  <h4>Your Teams:</h4><br>
-  <ul id="existingTeams">
-    <% @user.teams.each do |team| %>
-      <li><%= link_to team.name, user_team_path(@user, team) %></li>
-    <% end %>
-  </ul>
+<div id="existingTeams">
+<% @user.teams.each do |team| %>
+  <li><%= link_to team.name, user_team_path(@user, team) %></li>
 <% end %>
+</div>
 
 <% if is_admin? %>
   <div class="newLeague">

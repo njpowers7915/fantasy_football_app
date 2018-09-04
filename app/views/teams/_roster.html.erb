@@ -15,7 +15,7 @@
       <% else %>
         <tr class="team_player" player_id="<%=@team.get(position).id %>">
           <th><%= position.name %></th>
-          <th id="playerid-<%=@team.get(position).id%>"><a href="#" onclick="loadPlayer()"><%= @team.get(position).name %></a></th>
+          <th id="playerid-<%=@team.get(position).id%>"><a href='#' onclick="loadPlayer('<%=@team.get(position).id%>')"><%= @team.get(position).name %></a></th>
           <th><%= @team.get(position).points %></th>
           <th><%= @team.get(position).salary %></th>
           <th><%= render partial: 'delete_player', locals: {player: @team.get(position)} %></th>
@@ -26,61 +26,66 @@
   </table>
 
   <script id="player-template" type="text/x-handlebars-template">
-    <h1>{{name}}</h1><br>
-    <h3>{{position}}</h3><br>
+      <h1>{{name}}</h1><br>
+      <h3>{{position}}</h3><br>
 
-    <h4>Salary: ${{salary}}</h4><br>
-    <h4>Points: ${{points}}</h4><br>
+      <h4>Salary: ${{salary}}</h4><br>
+      <h4>Points: ${{points}}</h4><br>
 
-    <h4>Stats</h4><br>
-      <p>TDs: {{touchdowns}}</p><br>
-      <p>Passing Yards: {{pass_yards}}</p><br>
-      <p>Rushing Yards: {{rush_yards}}</p><br>
-      <p>Receptions: {{receptions}}</p><br>
-      <p>Receiving Yards: {{rec_yards}}</p><br>
+      <h4>Stats</h4><br>
+        <p>TDs: {{touchdowns}}</p><br>
+        <p>Passing Yards: {{pass_yards}}</p><br>
+        <p>Rushing Yards: {{rush_yards}}</p><br>
+        <p>Receptions: {{receptions}}</p><br>
+        <p>Receiving Yards: {{rec_yards}}</p><br>
   </script>
 
 <script type="text/javascript" charset="utf-8">
-
+function loadPlayer(player_id) {
+      var url = '/players/' + player_id
+      $.getJSON(url, function(data) {
+        var player = {
+          name: data.data.attributes.name,
+          position: data.data.attributes.position.name,
+          salary: data.data.attributes.salary,
+          points: data.data.attributes.points,
+          touchdowns: data.data.attributes.touchdowns,
+          pass_yards: data.data.attributes["pass-yards"],
+          rush_yards: data.data.attributes["rush-yards"],
+          receptions: data.data.attributes.receptions,
+          rec_yards: data.data.attributes["rec-yards"]
+        }
+        var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
+        var result = template(player)
+      })
+    }
 </script>
 
-
-
-
-  <script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-    var players = Array.from($('.team_player'))
-    players.forEach(function (player) {
-      player.addEventListener("click", showPlayerProfile(player))
-    })
-  })
-
-  function showPlayerProfile(player) {
-    var playerID = player.attributes.player_id.value
-    var url = '/players/' + playerID
-    $.get(url, loadPlayer(data))
-  }
-
-  function loadPlayer(data) {
-    var player = {
-      name: data.data.attributes.name
-      position: data.data.attributes.position.name
-      salary: data.data.attributes.salary
-      points: data.data.attributes.points
-      touchdowns: data.data.attributes.touchdowns
-      pass_yards: data.data.attributes.pass_yards
-      rush_yards: data.data.attributes.rush_yards
-      receptions: data.data.attributes.receptions
-      rec_yards: data.data.attributes.rec_yards
+//render handlebars templates via ajax
+function getTemplateAjax(path, callback) {
+  var source, template;
+  $.ajax({
+    url: path,
+    success: function (data) {
+      source = data;
+      template = Handlebars.compile(source)
     }
-   var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
-   var result = template(player)
- }
-  //}
+  })
+}
 
-    //[0].attributes.player_id.value
-  //function createNewTeamForm() {
-  //  event.preventDefault();
-  //  $('#newTeamForm').html("<%= j (render 'teams/new_team') %>")
-  //}
-  </script>
+  debugger
+  var player = $.getJSON(url, function(data) {
+    name: data.data.attributes.name
+    position: data.data.attributes.position
+    salary: data.data.attributes.salary
+    points: data.data.attributes.points
+    touchdowns: data.data.attributes.touchdowns
+    pass_yards: data.data.attributes.pass_yards
+    rush_yards: data.data.attributes.rush_yards
+    receptions: data.data.attributes.receptions
+    rec_yards: data.data.attributes.rec_yards
+    })
+  debugger
+  var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
+  var result = template(player)
+}
