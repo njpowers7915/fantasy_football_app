@@ -25,12 +25,62 @@
 
   </table>
 
+  <script id="player-template" type="text/x-handlebars-template">
+    <h1>{{name}}</h1><br>
+    <h3>{{position}}</h3><br>
+
+    <h4>Salary: ${{salary}}</h4><br>
+    <h4>Points: ${{points}}</h4><br>
+
+    <h4>Stats</h4><br>
+      <p>TDs: {{touchdowns}}</p><br>
+      <p>Passing Yards: {{pass_yards}}</p><br>
+      <p>Rushing Yards: {{rush_yards}}</p><br>
+      <p>Receptions: {{receptions}}</p><br>
+      <p>Receiving Yards: {{rec_yards}}</p><br>
+  </script>
+
+<script type="text/javascript" charset="utf-8">
+
+</script>
+
+
+
+
   <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    $('')
+    var players = Array.from($('.team_player'))
+    players.forEach(function (player) {
+      player.addEventListener("click", showPlayerProfile(player))
+    })
   })
-  function createNewTeamForm() {
-    event.preventDefault();
-    $('#newTeamForm').html("<%= j (render 'teams/new_team') %>")
+
+  function showPlayerProfile(player) {
+    var playerID = player.attributes.player_id.value
+    var url = '/players/' + playerID
+    $.get(url, loadPlayer(data))
   }
+
+  function loadPlayer(data) {
+    var player = {
+      name: data.data.attributes.name
+      position: data.data.attributes.position.name
+      salary: data.data.attributes.salary
+      points: data.data.attributes.points
+      touchdowns: data.data.attributes.touchdowns
+      pass_yards: data.data.attributes.pass_yards
+      rush_yards: data.data.attributes.rush_yards
+      receptions: data.data.attributes.receptions
+      rec_yards: data.data.attributes.rec_yards
+    }
+   var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
+   var result = template(player)
+ }
+  //}
+
+    //[0].attributes.player_id.value
+  //function createNewTeamForm() {
+  //  event.preventDefault();
+  //  $('#newTeamForm').html("<%= j (render 'teams/new_team') %>")
+  //}
   </script>
