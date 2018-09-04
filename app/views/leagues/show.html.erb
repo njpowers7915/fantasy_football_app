@@ -26,4 +26,8 @@
   </table>
   <br>
 
-<h4><%= link_to "Message Board", league_comments_path(@league, @comments) %></h4>
+<div id="messageBoard">
+  <h4><a href='#' onclick='viewMessageBoard()'>Message Board</a></h4>
+  <br>
+  <div id="newMessageForm"></div>
+</div>

@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     @team = @user.teams.build(team_params)
     @team.save
-    #session[:team_id] = @team.id
+    session[:team_id] = @team.id
     #binding.pry
     render json: @team
   end
@@ -19,7 +19,7 @@ class TeamsController < ApplicationController
     @team = Team.find_by_id(params[:id])
     #  session[:team_id] = @team.id
     @user = User.find_by_id(session[:user_id])
-    #  @players = @team.players
+    @players = @team.players
     respond_to do |format|
       format.html
       format.json { render json: @team }
