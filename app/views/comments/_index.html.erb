@@ -7,12 +7,12 @@
   <h4>No messages have been posted yet!</h4>
 <% else %>
   <ul>
+    <div id='messageBoard'>
     <% @comments.each do |comment| %>
     <li>"<%= comment.content %>"<br>
     <%= comment.team.user.name %> -- <%= comment.created_at.strftime("%b-%d  %I:%M %p") %></li><br>
     <% end %>
+    </div>
   </ul>
 <% end %>
 <br>
-
-<h4>Return to <%= link_to @league.name, league_path(@league) %> homepage<h4>

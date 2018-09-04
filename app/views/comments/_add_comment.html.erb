@@ -4,5 +4,17 @@
 
   <%= f.submit "+" %>
   <br>
-  <br>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $('form').submit(function(event) {
+      //event.preventDefault();
+      $(this).hide();
+      var values = $(this).serialize();
+
+      $.post('/comments', values, function(comment) {
+        $("#existingTeams").append('<li><a href=' + urlWithParams + '>' + team.data.attributes.name + '</a></li>')
+      })
+      return false
+    });
+</script>

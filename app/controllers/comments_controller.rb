@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
       redirect_to league_comments_path(@league)
     else
       render 'new'
-    end
+    end 
   end
 
 
