@@ -7,19 +7,20 @@ class TeamsController < ApplicationController
 
   def create
     @user = User.find_by_id(session[:user_id])
-    @team = Team.create(team_params)
-    #@team.user = @user
-    session[:team_id] = @team.id
+    @team = @user.teams.build(team_params)
+    @team.save
+    #session[:team_id] = @team.id
+    #binding.pry
     render json: @team
   end
 
   def show
     #if Team.find_by_id(params[:id])
-    #  @team = Team.find_by_id(params[:id])
+    @team = Team.find_by_id(params[:id])
     #  session[:team_id] = @team.id
     #  @user = User.find_by_id(session[:user_id])
     #  @players = @team.players
-      render json: @team
+    render json: @team
     #end
   end
 

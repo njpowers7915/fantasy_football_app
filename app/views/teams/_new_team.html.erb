@@ -12,19 +12,19 @@
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-  $(function () {
-    $('form').submit(function(event) {
-
+  $('form').submit(function(event) {
       event.preventDefault();
-      debugger
+      $(this).hide();
       var values = $(this).serialize();
       var newTeam = $.post('/teams', values);
 
       newTeam.done(function(data) {
         var team = data
+        var urlWithParams = "/users/" + team.data.attributes.user.id + "/teams/" + team.data.attributes.name
         debugger
-        $("#existingTeams").append(data["data"]["attributes"].name)
+
+        $("#existingTeams").append('<li><a href="urlWithParams">' + team.data.attributes.name + '</a></li>')
       });
+      return false;
     });
-  });
 </script>

@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
     if User.find_by_id(session[:user_id])
       @user = User.find_by_id(session[:user_id])
+      #@teams = @user.teams
     else
       redirect_to '/'
     end
