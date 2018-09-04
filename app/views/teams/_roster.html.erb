@@ -15,7 +15,7 @@
       <% else %>
         <tr class="team_player" player_id="<%=@team.get(position).id %>">
           <th><%= position.name %></th>
-          <th id="playerid-<%=@team.get(position).id%>"><%= @team.get(position).name %></th>
+          <th id="playerid-<%=@team.get(position).id%>"><a href="#" onclick="loadPlayer()"><%= @team.get(position).name %></a></th>
           <th><%= @team.get(position).points %></th>
           <th><%= @team.get(position).salary %></th>
           <th><%= render partial: 'delete_player', locals: {player: @team.get(position)} %></th>
