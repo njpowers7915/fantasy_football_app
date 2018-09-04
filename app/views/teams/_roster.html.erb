@@ -13,9 +13,9 @@
           <th><%= render 'add_player' %></th>
         </tr>
       <% else %>
-        <tr class="team_player" player_id="<%=@team.get(position).id %>">
+        <tr id="playerid-<%=@team.get(position).id%>">
           <th><%= position.name %></th>
-          <th id="playerid-<%=@team.get(position).id%>"><a href='#' onclick="loadPlayer('<%=@team.get(position).id%>')"><%= @team.get(position).name %></a></th>
+          <th><a href='#' onclick="loadPlayer('<%=@team.get(position).id%>')"><%= @team.get(position).name %></a></th>
           <th><%= @team.get(position).points %></th>
           <th><%= @team.get(position).salary %></th>
           <th><%= render partial: 'delete_player', locals: {player: @team.get(position)} %></th>
@@ -42,6 +42,7 @@
 
 <script type="text/javascript" charset="utf-8">
 function loadPlayer(player_id) {
+      event.preventDefault()
       var url = '/players/' + player_id
       $.getJSON(url, function(data) {
         var player = {
@@ -57,35 +58,10 @@ function loadPlayer(player_id) {
         }
         var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
         var result = template(player)
+        var element = Array.from($('#playerid-' + data.data.id))
+        debugger
+        element[0].innerHTML = result
       })
+      return false
     }
 </script>
-
-//render handlebars templates via ajax
-function getTemplateAjax(path, callback) {
-  var source, template;
-  $.ajax({
-    url: path,
-    success: function (data) {
-      source = data;
-      template = Handlebars.compile(source)
-    }
-  })
-}
-
-  debugger
-  var player = $.getJSON(url, function(data) {
-    name: data.data.attributes.name
-    position: data.data.attributes.position
-    salary: data.data.attributes.salary
-    points: data.data.attributes.points
-    touchdowns: data.data.attributes.touchdowns
-    pass_yards: data.data.attributes.pass_yards
-    rush_yards: data.data.attributes.rush_yards
-    receptions: data.data.attributes.receptions
-    rec_yards: data.data.attributes.rec_yards
-    })
-  debugger
-  var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
-  var result = template(player)
-}
