@@ -1,12 +1,30 @@
-<h1><%= @player.name %></h1><br>
-<h3><%= @player.position.name %> --- <%= @player.pro_team %></h3><br>
+<script id="player-template" type="text/x-handlebars-template">
+  <h1>{{name}}</h1><br>
+  <h3>{{position}}</h3><br>
 
-<h4>Salary: $<%= @player.salary %></h4><br>
-<h4>Points: <%= @player.points %></h4><br>
+  <h4>Salary: ${{salary}}</h4><br>
+  <h4>Points: ${{points}}</h4><br>
 
-<h4>Stats</h4><br>
-  <p>TDs: <%= @player.touchdowns %></p><br>
-  <p>Passing Yards: <%= @player.pass_yards %></p><br>
-  <p>Rushing Yards: <%= @player.rush_yards %></p><br>
-  <p>Receptions: <%= @player.receptions %></p><br>
-  <p>Receiving Yards: <%= @player.rec_yards %></p><br>
+  <h4>Stats</h4><br>
+    <p>TDs: {{touchdowns}}</p><br>
+    <p>Passing Yards: {{pass_yards}}</p><br>
+    <p>Rushing Yards: {{rush_yards}}</p><br>
+    <p>Receptions: {{receptions}}</p><br>
+    <p>Receiving Yards: {{rec_yards}}</p><br>
+</script>
+
+function loadPlayer() {
+  var player = {
+    name:
+    position:
+    salary:
+    points:
+    touchdowns:
+    pass_yards:
+    rush_yards:
+    receptions:
+    rec_yards:
+  }
+  var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
+  var result = template(player)
+}

@@ -8,14 +8,14 @@
 
     <% Position.all.each do |position| %>
       <% if @team.get(position).nil? %>
-        <tr class="player_profile" id="team_<%=position.name %>">
+        <tr class="player_profile">
           <th><%= position.name %></th>
           <th><%= render 'add_player' %></th>
         </tr>
       <% else %>
-        <tr class="player_profile" id="team_<%=position.name %>" player_id="<%=@team.get(position).id %>">
+        <tr class="team_player" player_id="<%=@team.get(position).id %>">
           <th><%= position.name %></th>
-          <th id="player_profile" player_id="<%=@team.get(position).id %>"><%= @team.get(position).name %></th>
+          <th id="playerid-<%=@team.get(position).id%>"><%= @team.get(position).name %></th>
           <th><%= @team.get(position).points %></th>
           <th><%= @team.get(position).salary %></th>
           <th><%= render partial: 'delete_player', locals: {player: @team.get(position)} %></th>
@@ -24,3 +24,13 @@
     <% end %>
 
   </table>
+
+  <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('')
+  })
+  function createNewTeamForm() {
+    event.preventDefault();
+    $('#newTeamForm').html("<%= j (render 'teams/new_team') %>")
+  }
+  </script>
