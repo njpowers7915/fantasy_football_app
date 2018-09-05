@@ -20,7 +20,7 @@
       $.post('/teams', values, function(team) {
         currentTeam = team.data.id
         urlWithParams = "/users/" + team.data.attributes.user.id + "/teams/" + currentTeam
-        $("#existingTeams").append('<li><a href=' + urlWithParams + '>' + team.data.attributes.name + '</a></li>')
+        $("#existingTeams").append('<li><a href=' + urlWithParams + '>' + team.data.attributes.name + '</a> --- Please join a league!</li>')
       })
       return false
     });
