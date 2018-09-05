@@ -18,10 +18,13 @@
 
 <% if is_admin? %>
   <div class="newLeague">
+    <br>
     <h4><%= link_to "Create League", new_user_team_path(@user, @team) %></h4>
+    <br>
   </div>
 <% else %>
   <div id="newTeam">
+    <br>
     <h4><a href='#' onclick='createNewTeamForm()'>Create New Team</a></h4>
     <br>
     <div id="newTeamForm"></div>
@@ -40,14 +43,47 @@ function createNewTeamForm() {
 <div id="player_stats">Stat Leaders: <select id="stat_dropdown">
   <option value="points">Total Points</option>
   <option value="touchdowns">Touchdowns</option>
-  <option value="pass_yards">Pass Yards</option>
-  <option value="rush_yards">Rush Yards</option>
+  <option value="pass-yards">Pass Yards</option>
+  <option value="rush-yards">Rush Yards</option>
   <option value="receptions">Receptions</option>
-  <option value="rec_yards">Rec. Yards</option>
+  <option value="rec-yards">Rec. Yards</option>
 </select>
-  <button id="submit_player_stats" onclick='loadPlayers()'>Search</button>
+  <button id="submit_player_stats" onclick='getStatLeaders()'>Search</button>
 </div>
-<div id="stat_leaders"></div>
+<div id="statLeaders"></div>
+
+<script type="text/javascript" charset="utf-8">
+function getStatLeaders() {
+      event.preventDefault()
+      $.getJSON('/players', function(data) {
+        var stat = $('option:selected')[0].value
+        var playerArray = []
+        data.data.forEach(function (player, stat) {
+          var individualArray = [player.attributes.name, player.attributes.position.name,
+            player.attributes["pro-team"], player.attributes[stat]]
+          playerArray << individualArray
+        })
+        var statArray = playerArray
+
+        debugger
+        var player = {
+          name: data.data.attributes.name,
+          position: data.data.attributes.position.name,
+          salary: data.data.attributes.salary,
+          points: data.data.attributes.points,
+          touchdowns: data.data.attributes.touchdowns,
+          pass_yards: data.data.attributes["pass-yards"],
+          rush_yards: data.data.attributes["rush-yards"],
+          receptions: data.data.attributes.receptions,
+          rec_yards: data.data.attributes["rec-yards"]
+        }
+        var template = Handlebars.compile(document.getElementById("stat_leader_template").innerHTML)
+        var result = template(players)
+        document.getElementsByTagName("statLeaders")[0].innerHTML += result
+      })
+      return false
+    }
+</script>
 
 <script id="stat_leader_template" type="text/x-handlebars-template">
   <div id="stat_header">
@@ -59,7 +95,7 @@ function createNewTeamForm() {
           <th>Name</th>
           <th>Position</th>
           <th>Pro-Team</th>
-          <th>Stat</th>
+          <th>{{stat}}</th>
         </tr>
         {{#each this}}
         <tr>
