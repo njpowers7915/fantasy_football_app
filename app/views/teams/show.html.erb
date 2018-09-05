@@ -57,15 +57,16 @@ function joinLeague(leagueID) {
 
 
 <script type="text/javascript" charset="utf-8">
-  $('form').submit(function(event) {
-      //event.preventDefault();
-      $(this).hide();
-      var values = $(this).serialize();
+  //$('form').submit(function(event) {
+  //    //event.preventDefault();
+  //    $(this).hide();
+  //    var values = $(this).serialize();
 
-      $.post('/teams', values, function(team) {
-        currentTeam = team.data.id
-        urlWithParams = "/users/" + team.data.attributes.user.id + "/teams/" + currentTeam
-        $("#existingTeams").append('<li><a href=' + urlWithParams + '>' + team.data.attributes.name + '</a></li>')
-      })
-      return false
-    });
+  //    $.post('/teams', values, function(team) {
+  //      currentTeam = team.data.id
+  //      urlWithParams = "/users/" + team.data.attributes.user.id + "/teams/" + currentTeam
+  //      $("#existingTeams").append('<li><a href=' + urlWithParams + '>' + team.data.attributes.name + '</a></li>')
+  //    })
+  //    return false
+  //  });
+</script>

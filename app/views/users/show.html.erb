@@ -56,7 +56,8 @@ function createNewTeamForm() {
 </select>
   <button id="submit_player_stats" onclick='getStatLeaders()'>Search</button>
 </div>
-<div id="statLeaders"></div>
+<div id="statLeadersHeader"></div>
+<div id="statLeadersBody"></div>
 
 <script type="text/javascript" charset="utf-8">
 function getStatLeaders() {
@@ -72,44 +73,47 @@ function getStatLeaders() {
         var statArray = playerArray.sort(function (a, b) {
           return b[3] - a[3]
         }).slice(0, 5)
-
-        var templateArray = [{stat_name: $('option:selected')[0].innerHTML}]
+        debugger
+        var stat_name = { stat_name: $('option:selected')[0].innerHTML }
+        var templateArray = []
         statArray.forEach(function (player) {
           var individualStats = {
-            generic_info: [
-              {stat_name: $('option:selected')[0].innerHTML}
-            ],
             name: player[0],
             position: player[1],
             pro_team: player[2],
             stat: player[3]
             //stat_name: $('option:selected')[0].innerHTML,
           }
-          //debugger
           templateArray.push(individualStats)
         })
 
-        var template = Handlebars.compile(document.getElementById("stat_leader_template").innerHTML)
-        var result = template(templateArray)
-        //debugger
-        document.getElementById("statLeaders").innerHTML = result
+
+        var template_header = Handlebars.compile(document.getElementById("stat_header_template").innerHTML)
+        var template_body = Handlebars.compile(document.getElementById("stat_body_template").innerHTML)
+
+        var header_result = template_header(stat_name)
+        var body_result = template_body(templateArray)
+        document.getElementById("statLeadersHeader").innerHTML = header_result
+        document.getElementById("statLeadersBody").innerHTML = body_result
       })
       return false
     }
 </script>
 
-<script id="stat_leader_template" type="text/x-handlebars-template">
-  <div id="stat_header">
-    <h4>{{generic_info.stat_name}} Leaders</h4>
-    <div id="stat_body">
+<script id="stat_header_template" type="text/x-handlebars-template">
+<h4>{{stat_name}} Leaders</h4>
       <table style='width:50%'>
         <tr>
           <th>#</th>
           <th>Name</th>
           <th>Position</th>
           <th>Pro-Team</th>
-          <th>{{generic_info.stat_name}}</th>
+          <th>{{stat_name}}</th>
         </tr>
+  </table>
+</script>
+<script id="stat_body_template" type="text/x-handlebars-template">
+  <table style='width:50%'>
         {{#each this}}
         <tr>
           <td>{{@index}}</td>
@@ -120,6 +124,4 @@ function getStatLeaders() {
         </tr>
         {{/each}}
       </table>
-    </div>
-  </div>
 </script>

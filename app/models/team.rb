@@ -22,28 +22,26 @@ class Team < ApplicationRecord
 
 
   def valid_addition?(player)
-    self.update_salary
+    self.available_salary -= player.salary
     if self.available_salary < 0
       return false
-    else
-      self.save
     end
   end
 
   def update_points
-    point_total = 0
+    self.points_total = 0
     self.players.each do |player|
-      point_total += player.points
+      self.points_total += player.points
     end
-    return point_total
+    self.save
   end
 
   def update_salary
-    salary = 12
+    self.available_salary = 12
     self.players.each do |player|
-      salary -= player.salary
+      self.available_salary -= player.salary
     end
-    return salary
+    self.save
   end
 
   def get(position)

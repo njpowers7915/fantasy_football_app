@@ -1,4 +1,4 @@
-class TeamsController < ApplicationController 
+class TeamsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @team = @user.teams.build(user_id: params[:id])
@@ -57,6 +57,9 @@ class TeamsController < ApplicationController
                   redirect_to user_team_path(@user, @team)
                 else
                   @team.players << @player
+                  #binding.pry
+                  @team.update_points
+                  @team.update_salary
                   redirect_to user_team_path(@user, @team)
                 end
               end
@@ -73,8 +76,6 @@ class TeamsController < ApplicationController
         end
       end
     end
-    @team.points_total = @team.update_points
-    @team.available_salary = @team.update_salary
   end
 
   def index

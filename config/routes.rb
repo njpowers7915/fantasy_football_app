@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :teams
+
   resources :leagues do
     resources :comments, only: [:new, :create, :show, :index]
   end
