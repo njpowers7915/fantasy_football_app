@@ -56,14 +56,16 @@ function createNewTeamForm() {
 function getStatLeaders() {
       event.preventDefault()
       $.getJSON('/players', function(data) {
-        var stat = $('option:selected')[0].value
         var playerArray = []
-        data.data.forEach(function (player, stat) {
+        data.data.forEach(function (player) {
+          var stat = $('option:selected')[0].value
           var individualArray = [player.attributes.name, player.attributes.position.name,
             player.attributes["pro-team"], player.attributes[stat]]
-          playerArray << individualArray
+          playerArray.push(individualArray)
         })
-        var statArray = playerArray
+        var statArray = playerArray.sort(function (a, b) {
+          return b[3] - a[3]
+        }).slice(0, 5)
 
         debugger
         var player = {
