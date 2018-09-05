@@ -9,10 +9,16 @@
   <ul>
     <div id='messageBoard'>
     <% @comments.each do |comment| %>
-    <li>"<%= comment.content %>"<br>
-    <%= comment.team.user.name %> -- <%= comment.created_at.strftime("%b-%d  %I:%M %p") %></li><br>
+      <li>"<%= comment.content %>"<br>
+        <%= comment.team.user.name %> -- <%= comment.created_at.strftime("%b-%d  %I:%M %p") %></li><br>
     <% end %>
     </div>
   </ul>
 <% end %>
 <br>
+
+<div id="existingTeams">
+<% @user.teams.each do |team| %>
+  <li><%= link_to team.name, user_team_path(@user, team) %></li>
+<% end %>
+</div>

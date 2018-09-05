@@ -12,8 +12,11 @@
       $(this).hide();
       var values = $(this).serialize();
 
-      $.post('/comments', values, function(comment) {
-        $("#existingTeams").append('<li><a href=' + urlWithParams + '>' + team.data.attributes.name + '</a></li>')
+      $.post('/teams', values, function(comment) {
+        currentComment = comment.data.id
+        //urlWithParams = "/users/" + team.data.attributes.user.id + "/teams/" + currentTeam
+        $("#messageBoard").append('<li>"' + comment.data.attributes.content + '"<br>'
+        + comment.data.attributes.team.name + ' -- ' + comment.data.attributes.created_at.strftime("%b-%d  %I:%M %p") '</li><br>')
       })
       return false
     });

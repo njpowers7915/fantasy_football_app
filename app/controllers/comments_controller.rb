@@ -15,11 +15,8 @@ class CommentsController < ApplicationController
       redirect_to league_comments_path(@league)
     else
       render 'new'
-    end 
+    end
   end
-
-
-
 
   def index
     @league = League.find_by_id(params[:league_id])
