@@ -67,21 +67,22 @@ function getStatLeaders() {
           return b[3] - a[3]
         }).slice(0, 5)
 
-        debugger
-        var player = {
-          name: data.data.attributes.name,
-          position: data.data.attributes.position.name,
-          salary: data.data.attributes.salary,
-          points: data.data.attributes.points,
-          touchdowns: data.data.attributes.touchdowns,
-          pass_yards: data.data.attributes["pass-yards"],
-          rush_yards: data.data.attributes["rush-yards"],
-          receptions: data.data.attributes.receptions,
-          rec_yards: data.data.attributes["rec-yards"]
-        }
+        var templateArray = [{stat_name: $('option:selected')[0].innerHTML}]
+        statArray.forEach(function (player) {
+          var individualStats = {
+            name: player[0],
+            position: player[1],
+            pro_team: player[2],
+            //stat_name: $('option:selected')[0].innerHTML,
+            stat: player[3]
+          }
+          templateArray.push(individualStats)
+        })
+
         var template = Handlebars.compile(document.getElementById("stat_leader_template").innerHTML)
-        var result = template(players)
-        document.getElementsByTagName("statLeaders")[0].innerHTML += result
+        var result = template(templateArray)
+        //debugger
+        document.getElementById("statLeaders").innerHTML = result
       })
       return false
     }
@@ -89,7 +90,7 @@ function getStatLeaders() {
 
 <script id="stat_leader_template" type="text/x-handlebars-template">
   <div id="stat_header">
-    <h4>{{stat}} Leaders</h4>
+    <h4>{{stat_name}} Leaders</h4>
     <div id="stat_body">
       <table style='width:50%'>
         <tr>
@@ -97,7 +98,7 @@ function getStatLeaders() {
           <th>Name</th>
           <th>Position</th>
           <th>Pro-Team</th>
-          <th>{{stat}}</th>
+          <th>{{stat_name}}</th>
         </tr>
         {{#each this}}
         <tr>
