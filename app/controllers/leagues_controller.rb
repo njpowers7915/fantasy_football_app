@@ -19,7 +19,8 @@ class LeaguesController < ApplicationController
 
     def index
       @leagues = League.all
-      @team = Team.find_by_id(session[:team_id])
+      #@team = Team.find_by_id(session[:team_id])
+      render json: @leagues
     end
 
     def show
@@ -28,7 +29,7 @@ class LeaguesController < ApplicationController
         #session[:league_id] = @league.id
         @user = User.find_by_id(session[:user_id])
         @teams = @league.teams
-        @comments = @league.comments 
+        @comments = @league.comments
       end
     end
 
