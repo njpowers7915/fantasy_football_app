@@ -1,10 +1,11 @@
 <%= form_for ([@user, @team]) do |f| %>
   <%= f.hidden_field :name %><br>
   <label for="team_player">Add Player: </label>
+  <% players_array = Player.all.where(position_id: Position.find_by(name: position).id).map { |player| [player.id, player.name, player.position.name, player.salary] } %>
   <input list="players" name="team[player]" />
   <datalist id="players">
-    <% Player.all.each do |player| %>
-      <option value="<%= player.name %> --- <%= player.position.name %> --- $ <%= player.salary %>">
+    <% players_array.each do |player| %>
+      <option value="<%= player[1] %> --- <%= player[2] %> --- $ <%= player[3] %>">
     <% end %>
   </datalist>
 

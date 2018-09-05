@@ -1,4 +1,4 @@
-class TeamsController < ApplicationController
+class TeamsController < ApplicationController 
   def new
     @user = User.find(params[:user_id])
     @team = @user.teams.build(user_id: params[:id])

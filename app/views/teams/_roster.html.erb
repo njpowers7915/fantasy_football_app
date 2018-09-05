@@ -10,7 +10,7 @@
       <% if @team.get(position).nil? %>
         <tr class="player_profile">
           <th><%= position.name %></th>
-          <th><%= render 'add_player' %></th>
+          <th><%= render partial: 'add_player', locals: {position: position.name} %></th>
         </tr>
       <% else %>
         <tr id="playerid-<%=@team.get(position).id%>">
