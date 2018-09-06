@@ -30,7 +30,7 @@ class LeaguesController < ApplicationController
         @team = Team.find_by_id(session[:team_id])
         @teams = @league.teams
         @comment = Comment.new
-        @comments = @league.comments
+        @comments = @league.comments.order(created_at: :desc)
       end
     end
 

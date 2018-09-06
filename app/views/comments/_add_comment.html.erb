@@ -25,8 +25,9 @@
       debugger
       $.post('/comments', values, function(comment) {
         currentComment = comment.id
+
         $("#messageIndex").prepend('<li>"' + comment.content + '"<br>'
-        + comment.team_id + ' -- ' + comment.created_at + '</li><br>')
+        + comment.team_id + ' -- ' + moment(comment.created_at).format("MMM-DD HH:mm A") + '</li><br>')
       })
       return false
     });
