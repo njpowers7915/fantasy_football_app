@@ -12,19 +12,3 @@
     <p>Receptions: {{receptions}}</p><br>
     <p>Receiving Yards: {{rec_yards}}</p><br>
 </script>
-
-function loadPlayer() {
-  var player = {
-    name:
-    position:
-    salary:
-    points:
-    touchdowns:
-    pass_yards:
-    rush_yards:
-    receptions:
-    rec_yards:
-  }
-  var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
-  var result = template(player)
-}

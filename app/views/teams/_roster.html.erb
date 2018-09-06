@@ -9,16 +9,16 @@
     <% Position.all.each do |position| %>
       <% if @team.get(position).nil? %>
         <tr class="player_profile">
-          <th><%= position.name %></th>
-          <th><%= render partial: 'add_player', locals: {position: position.name} %></th>
+          <td><%= position.name %></td>
+          <td><%= render partial: 'add_player', locals: {position: position.name} %></td>
         </tr>
       <% else %>
-        <tr id="playerid-<%=@team.get(position).id%>">
-          <th><%= position.name %></th>
-          <th><a href='#' onclick="loadPlayer('<%=@team.get(position).id%>')"><%= @team.get(position).name %></a></th>
-          <th><%= @team.get(position).points %></th>
-          <th><%= @team.get(position).salary %></th>
-          <th><%= render partial: 'delete_player', locals: {player: @team.get(position)} %></th>
+        <tr class="individual_profile" id="playerid-<%=@team.get(position).id%>"  colspan="4">
+          <td><%= position.name %></th>
+          <td><a href='#' onclick="loadPlayer('<%=@team.get(position).id%>')"><%= @team.get(position).name %></a></td>
+          <td><%= @team.get(position).points %></td>
+          <td><%= @team.get(position).salary %></td>
+          <td><%= render partial: 'delete_player', locals: {player: @team.get(position)} %></td>
         </tr>
       <% end %>
     <% end %>
@@ -26,7 +26,7 @@
   </table>
 
   <script id="player-template" type="text/x-handlebars-template">
-      <h4>{{name}} -- {{position}} -- {{pro_team}}</h4><br>
+      <h5>{{name}} -- {{position}} -- {{pro_team}}</h5><br>
       <p>Salary: ${{salary}}</p><br>
       <p>Points: ${{points}}</p><br>
       <h4>Stats</h4><br>
@@ -37,9 +37,15 @@
         <li>Receptions: {{receptions}}</li><br>
         <li>Receiving Yards: {{rec_yards}}</li><br>
       </ul>
+      <button onclick='hide()'>Hide</button>
   </script>
 
 <script type="text/javascript" charset="utf-8">
+function hide() {
+    $('.individual_profile').hide();
+  }
+
+
 function loadPlayer(player_id) {
       event.preventDefault()
       var url = '/players/' + player_id

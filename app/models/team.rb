@@ -16,8 +16,6 @@ class Team < ApplicationRecord
     deleted_player = self.players.detect {|i| i == player}
     self.players -= [deleted_player]
     self.save
-    self.update_points
-    self.update_salary(player)
   end
 
 

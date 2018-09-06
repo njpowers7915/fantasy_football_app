@@ -1,13 +1,4 @@
 <%= form_for player do |f| %>
-  <%= f.hidden_field :name %>
-  <%= f.hidden_field :position_id %>
-  <%= f.hidden_field :points %>
-  <%= f.hidden_field :pro_team %>
-  <%= f.hidden_field :touchdowns %>
-  <%= f.hidden_field :pass_yards %>
-  <%= f.hidden_field :rush_yards %>
-  <%= f.hidden_field :receptions %>
-  <%= f.hidden_field :rec_yards %>
   <input type='hidden' id='delete_player' name="delete" >
   <%= f.submit "Remove" %>
 <% end %>
