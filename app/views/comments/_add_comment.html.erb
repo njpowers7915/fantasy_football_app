@@ -1,9 +1,20 @@
-<%= form_for ([@league, @comment]) do |f| %>
-  <label for="league_comment">Post Message: </label>
-  <%= f.text_area :content %>
+<%= form_for @comment, remote: true do |f| %>
+  <div class="field">
+    <label for="team_comment">Post Message: </label>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <input type="hidden" id="comment_team_id" name="comment[team_id]" value='<%= @team.id %>' />
+  </div>
 
+  <div class="field">
+    <input type="hidden" id="comment_league_id" name="comment[league_id]" value='<%= @league.id %>' />
+  </div>
+
+  <div class="action">
   <%= f.submit "+" %>
   <br>
+  </div>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">

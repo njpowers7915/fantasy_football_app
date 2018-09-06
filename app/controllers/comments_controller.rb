@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def new
-    @league = League.find(params[:league_id])
-    @comment = @league.comments.build(league_id: params[:league_id])
+    @league = League.find(sessions[:league_id])
+    @comment = @league.comments.build(sessions[:league_id])
   end
 
   def create
@@ -11,8 +11,7 @@ class CommentsController < ApplicationController
     @comment.team = Team.find(session[:team_id])
     if @comment.save
       @comment.save
-      @league.save
-      redirect_to league_comments_path(@league)
+      render json: @comment
     else
       render 'new'
     end
@@ -22,6 +21,7 @@ class CommentsController < ApplicationController
     @league = League.find_by_id(params[:league_id])
     @team = Team.find_by_id(session[:team_id])
     @comments = @league.comments.order("created_at DESC")
+    render json: @comments
   end
 
   def show
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :league_id)
+    params.require(:comment).permit(:content, :league_id, :team_id)
   end
 
 end

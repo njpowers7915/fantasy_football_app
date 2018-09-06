@@ -10,14 +10,13 @@ class TeamsController < ApplicationController
     @team = @user.teams.build(team_params)
     @team.save
     session[:team_id] = @team.id
-    #binding.pry
     render json: @team
   end
 
   def show
     #if Team.find_by_id(params[:id])
     @team = Team.find_by_id(params[:id])
-    #  session[:team_id] = @team.id
+    session[:team_id] = @team.id
     @user = User.find_by_id(session[:user_id])
     @players = @team.players
     respond_to do |format|
