@@ -16,7 +16,6 @@
       //event.preventDefault();
       $(this).hide();
       var values = $(this).serialize();
-
       $.post('/teams', values, function(team) {
         currentTeam = team.data.id
         urlWithParams = "/users/" + team.data.attributes.user.id + "/teams/" + currentTeam

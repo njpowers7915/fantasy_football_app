@@ -86,11 +86,8 @@ function getStatLeaders() {
           }
           templateArray.push(individualStats)
         })
-
-
         var template_header = Handlebars.compile(document.getElementById("stat_header_template").innerHTML)
         var template_body = Handlebars.compile(document.getElementById("stat_body_template").innerHTML)
-
         var header_result = template_header(stat_name)
         var body_result = template_body(templateArray)
         document.getElementById("statLeadersHeader").innerHTML = header_result
