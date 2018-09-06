@@ -73,7 +73,6 @@ function getStatLeaders() {
         var statArray = playerArray.sort(function (a, b) {
           return b[3] - a[3]
         }).slice(0, 5)
-        debugger
         var stat_name = { stat_name: $('option:selected')[0].innerHTML }
         var templateArray = []
         statArray.forEach(function (player) {

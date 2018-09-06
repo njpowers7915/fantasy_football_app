@@ -1,13 +1,16 @@
 <h2>Message Board</h2>
 <br>
 
-<%= link_to "Create New Message", new_league_comment_path(@league, @comment)%>
+<h4><a href='#' onclick='createNewComment()'>Create New Message</a></h4>
+<br>
+<div id="newCommentForm"></div>
+<br>
 
 <% if @comments.empty? %>
   <h4>No messages have been posted yet!</h4>
 <% else %>
   <ul>
-    <div id='messageBoard'>
+    <div id='messageIndex'>
     <% @comments.each do |comment| %>
       <li>"<%= comment.content %>"<br>
         <%= comment.team.user.name %> -- <%= comment.created_at.strftime("%b-%d  %I:%M %p") %></li><br>
@@ -15,3 +18,10 @@
     </div>
   </ul>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+function createNewComment() {
+  event.preventDefault();
+  $('#newCommentForm').html("<%= j (render 'comments/add_comment') %>")
+}
+</script>

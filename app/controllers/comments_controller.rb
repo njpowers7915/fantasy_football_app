@@ -5,16 +5,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params)
-    @league = League.find(params[:league_id])
-    @comment.league = @league
-    @comment.team = Team.find(session[:team_id])
-    if @comment.save
-      @comment.save
-      render json: @comment
-    else
-      render 'new'
-    end
+    @league = League.find_by_id(params[:league_id])
+    @comment = Comment.create(comment_params)
+    @comment.save
+    render json: @comment
   end
 
   def index

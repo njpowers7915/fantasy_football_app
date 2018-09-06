@@ -29,7 +29,7 @@ class LeaguesController < ApplicationController
         @user = User.find_by_id(session[:user_id])
         @team = Team.find_by_id(session[:team_id])
         @teams = @league.teams
-        @comment = @league.comments.build
+        @comment = Comment.new
         @comments = @league.comments
       end
     end
