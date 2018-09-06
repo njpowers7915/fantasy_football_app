@@ -38,10 +38,20 @@ function showLeagues() {
 </script>
 
 <script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+  attachListeners();
+});
+
+function attachListeners() {
+  $('button').on('click', function() {
+    joinLeague(leagueID);
+  })
+}
+
 function joinLeague(leagueID) {
-  debugger
   event.preventDefault()
-  var values
+  //var values
+  debugger
   var thisURL = this.location.pathname.split('/')
   var currentTeamId = thisURL[thisURL.length - 1]
   var teamData = { league_id: leagueID };
@@ -49,7 +59,18 @@ function joinLeague(leagueID) {
   $.ajax({
     type: 'PATCH',
     url: `/teams/${currentTeamId}`,
-    data: teamData
+    contentType: 'application/json',
+    dataType: "json",
+    data: JSON.stringify({
+      id: currentTeamId,
+      league_id: leagueID
+    }),
+    success: function(response) {
+      console.log(response);
+    },
+    error: function(response) {
+      console.log(response);
+    }
   })
 }
 </script>
