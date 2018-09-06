@@ -73,6 +73,8 @@ class TeamsController < ApplicationController
         else
           redirect_to user_team_path(@user, @team)
         end
+      else
+        redirect_to user_team_path(@user, @team)
       end
     end
   end
