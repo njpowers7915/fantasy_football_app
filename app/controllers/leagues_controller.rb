@@ -1,17 +1,19 @@
 class LeaguesController < ApplicationController
   def new
     @league = League.new
+    render json: @league
   end
 
   def create
     @league = League.new(league_params)
-    @team = Team.find_by(user_id: session[:user_id])
+    @team = Team.find_by_id(session[:team_id])
+    @user = User.find_by_id(session[:user_id])
     @league.teams << @team
     @league.admin_id = session[:user_id]
     if @league.save
       session[:league_id] = @league.id
       @league.save
-      redirect_to @league
+      render json: @league
     else
       render 'new'
     end

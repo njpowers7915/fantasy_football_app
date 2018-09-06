@@ -1,0 +1,27 @@
+<%= form_for @league, remote: true do |f| %>
+  <div class="field">
+    <h4>League Name:
+    <%= f.text_field :name %></h4>
+  </div>
+  <div class="field">
+    <input type="hidden" id="league_user_id" name="league[admin_id]" value='<%= @user.id %>' />
+  </div>
+  <div class="actions">
+    <%= f.submit "Create League" %>
+  </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $('form').submit(function(event) {
+      //event.preventDefault();
+      debugger
+      $(this).hide();
+      var values = $(this).serialize();
+      $.post('/leagues', values, function(league) {
+        currentLeague = league.data.id
+        urlWithParams = "/leagues/" + currentLeague
+        $("#leagueContainer").innerHTML('<h4><a href=' + urlWithParams + '>' + league.data.attributes.name + ' -- League Homepage</a></h4>')
+      })
+      return false
+    });
+</script>

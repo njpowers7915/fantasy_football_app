@@ -15,6 +15,8 @@
   <li><%= link_to team.name, user_team_path(@user, team) %>
     <% if !team.league.nil? %>
       --- <%= link_to team.league.name, league_path(team.league) %>
+    <% elsif is_admin? %>
+      --- Click on team to create a league!
     <% else %>
       --- Please join a league!
     <% end %>
@@ -23,10 +25,11 @@
 </div>
 
 <% if is_admin? %>
-  <div class="newLeague">
+  <div id="newLeague">
     <br>
-    <h4><%= link_to "Create League", new_user_team_path(@user, @team) %></h4>
+    <h4><a href='#' onclick='createNewTeamForm()'>Create League</a></h4>
     <br>
+    <div id="newTeamForm"></div>
   </div>
 <% else %>
   <div id="newTeam">
@@ -41,6 +44,11 @@
 function createNewTeamForm() {
   event.preventDefault();
   $('#newTeamForm').html("<%= j (render 'teams/new_team') %>")
+}
+
+function createNewAdminTeamForm() {
+  event.preventDefault();
+  $('#newTeamForm').html("<%= j (render 'teams/new_admin_team') %>")
 }
 </script>
 

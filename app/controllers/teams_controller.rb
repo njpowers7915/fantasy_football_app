@@ -19,6 +19,7 @@ class TeamsController < ApplicationController
     session[:team_id] = @team.id
     @user = User.find_by_id(session[:user_id])
     @players = @team.players
+    @league = League.new
     respond_to do |format|
       format.html
       format.json { render json: @team }
