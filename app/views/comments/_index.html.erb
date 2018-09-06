@@ -15,10 +15,3 @@
     </div>
   </ul>
 <% end %>
-<br>
-
-<div id="existingTeams">
-<% @user.teams.each do |team| %>
-  <li><%= link_to team.name, user_team_path(@user, team) %></li>
-<% end %>
-</div>
