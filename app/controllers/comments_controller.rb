@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    @league = League.find(sessions[:league_id])
+    @league = League.find(sessions[:league_id]) 
     @comment = @league.comments.build(sessions[:league_id])
   end
 
