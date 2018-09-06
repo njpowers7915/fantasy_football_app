@@ -50,8 +50,6 @@ function attachListeners() {
 
 function joinLeague(leagueID) {
   event.preventDefault()
-  //var values
-  debugger
   var thisURL = this.location.pathname.split('/')
   var currentTeamId = thisURL[thisURL.length - 1]
   var teamData = { league_id: leagueID };
@@ -60,17 +58,10 @@ function joinLeague(leagueID) {
     type: 'PATCH',
     url: `/teams/${currentTeamId}`,
     contentType: 'application/json',
-    dataType: "json",
     data: JSON.stringify({
       id: currentTeamId,
       league_id: leagueID
     }),
-    success: function(response) {
-      console.log(response);
-    },
-    error: function(response) {
-      console.log(response);
-    }
   })
 }
 </script>
