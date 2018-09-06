@@ -3,5 +3,5 @@ class TeamSerializer < ApplicationSerializer
   belongs_to :user
   belongs_to :league
   #has_many :team_players
-  has_many :players, through: :team_player_serializer
+  has_many :players,
 end

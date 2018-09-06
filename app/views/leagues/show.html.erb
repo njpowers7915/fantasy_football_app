@@ -16,7 +16,7 @@
   </tr>
 
   <% @teams.each_with_index do |team, i| %>
-  <tr id="teamid-<%=team.id%>">
+  <tr id="teamid-<%=team.id%>" class="team_profile">
     <td><%= i + 1 %></td>
     <td><a href='#' onclick="loadTeam('<%=team.id%>')"><%= team.name %></td>
     <td><%= team.points_total %></td>
@@ -33,6 +33,11 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+
+function hide() {
+    $('.team_profile').hide();
+  }
+
 function viewMessageBoard() {
   event.preventDefault();
   $('#messageBoard').html("<%= j (render 'comments/index') %>")
@@ -49,6 +54,7 @@ function viewMessageBoard() {
       <li></li>
       <li></li>
     </ul>
+    <button onclick='hide()'>Hide</button>
   </script>
 
 <script type="text/javascript" charset="utf-8">
@@ -56,6 +62,7 @@ function loadTeam(team_id) {
     event.preventDefault()
     var url = '/teams/' + team_id
     $.getJSON(url, function(data) {
+      debugger
       var team = {
         name: data.data.attributes.name,
         points_total: data.data.attributes.points_total,
