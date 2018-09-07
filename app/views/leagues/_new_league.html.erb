@@ -14,13 +14,13 @@
 <script type="text/javascript" charset="utf-8">
   $('form').submit(function(event) {
       //event.preventDefault();
-      debugger
       $(this).hide();
       var values = $(this).serialize();
+
       $.post('/leagues', values, function(league) {
         currentLeague = league.data.id
         urlWithParams = "/leagues/" + currentLeague
-        $("#leagueContainer").innerHTML('<h4><a href=' + urlWithParams + '>' + league.data.attributes.name + ' -- League Homepage</a></h4>')
+        $("#leagueContainer").html('<h4><a href=' + urlWithParams + '>' + league.data.attributes.name + ' -- League Homepage</a></h4>')
       })
       return false
     });
