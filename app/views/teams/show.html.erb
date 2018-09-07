@@ -6,7 +6,7 @@
 <div id="leagueContainer">
 <% if @team.league.nil? %>
   <% if is_admin? %>
-    <h4><a href='#' onclick='createNewLeagueForm()'>Create League</a></h4>
+    <h4><a href='#' onclick="createNewLeagueForm()">Create League</a></h4>
   <% else %>
     <h4><a href='#' onclick="showLeagues()">Join a League</a></h4>
   <% end %>
