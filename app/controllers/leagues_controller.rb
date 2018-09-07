@@ -26,8 +26,8 @@ class LeaguesController < ApplicationController
 
     def show
       if League.find_by_id(session[:league_id])
-        @league = League.find_by_id(session[:league_id])
-        #session[:league_id] = @league.id
+        @league = League.find_by_id(params[:id])
+        session[:league_id] = @league.id
         @user = User.find_by_id(session[:user_id])
         @team = Team.find_by_id(session[:team_id])
         @teams = @league.teams
