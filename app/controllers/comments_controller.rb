@@ -1,14 +1,15 @@
 class CommentsController < ApplicationController
   def new
     @league = League.find(sessions[:league_id])
-    @comment = @league.comments.build(sessions[:league_id])
+    @team = Team.find(sessions[:team_id])
+    @comment = @team.comments.build(sessions[:team_id])
   end
 
   def create
     @league = League.find_by_id(params[:league_id])
+    @team = Team.find_by_id(params[:team_id])
     @comment = Comment.create(comment_params)
-    @comment.team = Team.find_by_id(params[:team_id])
-    @comment.save
+    #@comment.team = Team.find_by_id(params[:team_id])
     render json: @comment
   end
 
@@ -21,6 +22,7 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find_by_id(params[:id])
+    render json: @comment
   end
 
   private

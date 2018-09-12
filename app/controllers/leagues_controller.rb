@@ -25,15 +25,13 @@ class LeaguesController < ApplicationController
     end
 
     def show
-      if League.find_by_id(session[:league_id])
-        @league = League.find_by_id(params[:id])
-        session[:league_id] = @league.id
-        @user = User.find_by_id(session[:user_id])
-        @team = Team.find_by_id(session[:team_id])
-        @teams = @league.teams
-        @comment = @team.comment.build
-        @comments = @league.comments.order(created_at: :desc)
-      end
+      @league = League.find_by_id(params[:id])
+      session[:league_id] = @league.id
+      @user = User.find_by_id(session[:user_id])
+      @team = Team.find_by_id(session[:team_id])
+      @teams = @league.teams
+      @comment = @team.comments.build
+      @comments = @league.comments.order(created_at: :desc)
     end
 
     def edit

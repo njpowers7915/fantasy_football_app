@@ -27,6 +27,9 @@ class UsersController < ApplicationController
     if User.find_by_id(session[:user_id])
       @user = User.find_by_id(session[:user_id])
       #@teams = @user.teams
+      respond_to do |format|
+        format.html
+        format.json { render json: @user }
     else
       redirect_to '/'
     end

@@ -1,4 +1,4 @@
 class UserSerializer < ApplicationSerializer
   attributes :id, :name
-  #has_many :teams
+  has_many :teams
 end
