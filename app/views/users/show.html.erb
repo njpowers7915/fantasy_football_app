@@ -65,6 +65,7 @@ function createNewAdminTeamForm() {
   <button id="submit_player_stats" onclick='getStatLeaders()'>Search</button>
 </div>
 <div id="statLeadersHeader"></div>
+<br>
 <div id="statLeadersBody"></div>
 
 <script type="text/javascript" charset="utf-8">
@@ -106,7 +107,7 @@ function getStatLeaders() {
 
 <script id="stat_header_template" type="text/x-handlebars-template">
 <h4>{{stat_name}} Leaders</h4>
-      <table style='width:50%'>
+      <table style='width:50%' align=left>
         <tr>
           <th>#</th>
           <th>Name</th>
@@ -117,7 +118,7 @@ function getStatLeaders() {
   </table>
 </script>
 <script id="stat_body_template" type="text/x-handlebars-template">
-  <table style='width:50%'>
+  <table style='width:30%' align=left>
         {{#each this}}
         <tr>
           <td>{{@index}}</td>

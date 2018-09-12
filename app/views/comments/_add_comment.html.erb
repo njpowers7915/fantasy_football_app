@@ -22,9 +22,8 @@
       //event.preventDefault();
       $(this).hide();
       var values = $(this).serialize();
-      debugger
+
       $.post('/comments', values, function(comment) {
-        currentComment = comment.id
 
         $("#messageIndex").prepend('<li>"' + comment.content + '"<br>'
         + comment.team_id + ' -- ' + moment(comment.created_at).format("MMM-DD HH:mm A") + '</li><br>')

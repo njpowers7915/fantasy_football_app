@@ -1,11 +1,5 @@
 <h2> <%= @league.name %> </h2><br>
 
-<% if is_admin? %>
-  <h5><%= link_to "Edit League Info", edit_league_path(@league) %></h5>
-  <br>
-<% end %>
-
-
 <h4> League Standings </h4>
 <table style='width:50%'>
   <tr>
