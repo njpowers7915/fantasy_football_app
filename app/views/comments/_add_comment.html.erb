@@ -1,4 +1,4 @@
-<%= form_for @comment, remote: true do |f| %>
+<%= form_for @comment do |f| %>
   <div class="field">
     <label for="team_comment">Post Message: </label>
     <%= f.text_area :content %>
@@ -23,7 +23,7 @@
       $(this).hide();
       var values = $(this).serialize();
       $.post('/comments', values, function(comment) {
-        debugger
+
         class Comment {
           constructor(comment) {
             this.content = comment.data.attributes.content

@@ -63,10 +63,13 @@ function createNewAdminTeamForm() {
   <option value="rec-yards">Rec. Yards</option>
 </select>
   <button id="submit_player_stats" onclick='getStatLeaders()'>Search</button>
+  <button id="get_all_players" onClick='getAllPlayers()'>See All Players</button>
 </div>
 <div id="statLeadersHeader"></div>
 <br>
 <div id="statLeadersBody"></div>
+<br>
+<div id="allPlayers"></div>
 
 <script type="text/javascript" charset="utf-8">
 function getStatLeaders() {
