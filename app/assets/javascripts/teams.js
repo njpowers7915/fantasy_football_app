@@ -1,4 +1,4 @@
-$(document).ready(function() { 
+$(document).ready(function() {
   attachListeners();
 });
 
@@ -39,3 +39,48 @@ function showLeagues() {
       })
     })
 }
+
+//Create new league from team#show
+$('form').submit(function(event) {
+    $(this).hide();
+    var values = $(this).serialize();
+
+    $.post('/leagues', values, function(league) {
+      currentLeague = league.data.id
+      urlWithParams = "/leagues/" + currentLeague
+      $("#leagueContainer").html('<h4><a href=' + urlWithParams + '>' + league.data.attributes.name + ' -- League Homepage</a></h4>')
+    })
+    return false
+  });
+
+//Show player profiles on team#show
+function loadPlayer(player_id) {
+    event.preventDefault()
+    var url = '/players/' + player_id
+    fetch(url)
+      .then(response => response.json())
+      .then(function(data) {
+        var player = {
+          name: data.data.attributes.name,
+          position: data.data.attributes.position.name,
+          salary: data.data.attributes.salary,
+          points: data.data.attributes.points,
+          pro_team: data.data.attributes["pro-team"],
+          touchdowns: data.data.attributes.touchdowns,
+          pass_yards: data.data.attributes["pass-yards"],
+          rush_yards: data.data.attributes["rush-yards"],
+          receptions: data.data.attributes.receptions,
+          rec_yards: data.data.attributes["rec-yards"]
+        }
+        var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
+        var result = template(player)
+        var element = Array.from($('#playerid-' + data.data.id))
+        element[0].innerHTML = result
+      })
+    return false
+  }
+
+  //Hide player profiles from team#show
+  function hide() {
+        $('.individual_profile').hide();
+  }

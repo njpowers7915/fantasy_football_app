@@ -39,36 +39,3 @@
       </ul>
       <button onclick='hide()'>Hide</button>
   </script>
-
-<script type="text/javascript" charset="utf-8">
-function hide() {
-    $('.individual_profile').hide();
-  }
-
-
-function loadPlayer(player_id) {
-      event.preventDefault()
-      var url = '/players/' + player_id
-      fetch(url)
-        .then(response => response.json())
-        .then(function(data) {
-          var player = {
-            name: data.data.attributes.name,
-            position: data.data.attributes.position.name,
-            salary: data.data.attributes.salary,
-            points: data.data.attributes.points,
-            pro_team: data.data.attributes["pro-team"],
-            touchdowns: data.data.attributes.touchdowns,
-            pass_yards: data.data.attributes["pass-yards"],
-            rush_yards: data.data.attributes["rush-yards"],
-            receptions: data.data.attributes.receptions,
-            rec_yards: data.data.attributes["rec-yards"]
-          }
-          var template = Handlebars.compile(document.getElementById("player-template").innerHTML)
-          var result = template(player)
-          var element = Array.from($('#playerid-' + data.data.id))
-          element[0].innerHTML = result
-        })
-      return false
-    }
-</script>
