@@ -2,7 +2,10 @@ class TeamsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @team = @user.teams.build(user_id: params[:id])
-    render json: @team
+    respond_to do |format|
+      format.js
+      format.json { render json: @team }
+    end
   end
 
   def create

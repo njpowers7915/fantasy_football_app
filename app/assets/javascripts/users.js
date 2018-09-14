@@ -1,3 +1,13 @@
+//Create New Teams
+//function createNewTeamForm() {
+//  event.preventDefault();
+//  $('#newTeamForm').html("<%= j (render 'teams/new_team') %>")
+//}
+
+//function createNewAdminTeamForm() {
+//  event.preventDefault();
+//  $('#newTeamForm').html("<%= j (render 'teams/new_admin_team') %>")
+//}
 
 function getAllPlayers() {
       //event.preventDefault()

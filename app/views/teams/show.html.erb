@@ -6,7 +6,7 @@
 <div id="leagueContainer">
 <% if @team.league.nil? %>
   <% if is_admin? %>
-    <h4><a href='#' onclick="createNewLeagueForm()">Create League</a></h4>
+    <h4><%= link_to 'Create League', new_league_path(@league), remote: true %></h4>
   <% else %>
     <h4><a href='#' onclick="showLeagues()">Join a League</a></h4>
   <% end %>
@@ -19,10 +19,3 @@
 
 <br>
 <%= render 'roster' %>
-
-<script type="text/javascript" charset="utf-8">
-function createNewLeagueForm() {
-  event.preventDefault();
-  $('#newLeagueForm').html("<%= j (render 'leagues/new_league') %>")
-}
-</script>

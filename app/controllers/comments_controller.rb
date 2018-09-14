@@ -1,8 +1,11 @@
 class CommentsController < ApplicationController
   def new
-    @league = League.find(sessions[:league_id])
-    @team = Team.find(sessions[:team_id])
-    @comment = @team.comments.build(sessions[:team_id])
+    @league = League.find(session[:league_id])
+    @team = Team.find(session[:team_id])
+    @comment = @team.comments.build(team_id: session[:team_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -13,11 +16,34 @@ class CommentsController < ApplicationController
     render json: @comment
   end
 
+  def message_board
+    @league = League.find_by_id(session[:league_id])
+    @team = Team.find_by_id(session[:team_id])
+    @comment = Comment.new
+    if !@league.comments.nil?
+      @comments = @league.comments.order(created_at: :desc)
+    else
+      @league.comments = []
+      @comments = @league.comments
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def index
     @league = League.find_by_id(params[:league_id])
     @team = Team.find_by_id(session[:team_id])
-    @comments = @league.comments.order(created_at: :desc)
-    render json: @comments
+    if @league.comments
+      @comments = @league.comments.order(created_at: :desc)
+    else
+      @league.comments = []
+      @comments = @league.comments
+    end
+    respond_to do |format|
+      format.js
+      format.json { render json: @comments }
+    end
   end
 
   def show

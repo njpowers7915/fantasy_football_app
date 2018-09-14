@@ -1,4 +1,4 @@
-<%= form_for @comment do |f| %>
+<%= form_for @comment, remote: true do |f| %>
   <div class="field">
     <label for="team_comment">Post Message: </label>
     <%= f.text_area :content %>
@@ -16,3 +16,28 @@
   <br>
   </div>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+$('form').submit(function(event) {
+    $(this).hide();
+    var values = $(this).serialize();
+    $.post('/comments', values, function(comment) {
+
+    class Comment {
+      constructor(comment) {
+        this.content = comment.data.attributes.content
+        this.team = comment.data.attributes.team.name
+        this.created_at = moment(comment.created_at).format("MMM-DD HH:mm A")
+      }
+    }
+
+    Comment.prototype.addComment = function () {
+      $("#messageIndex").prepend('<li>"' + this.content + '"<br>'
+      + this.team + ' -- ' + this.created_at + '</li><br>')
+    }
+    let newComment = new Comment(comment)
+    newComment.addComment()
+  })
+  return false
+});
+</script>

@@ -1,27 +1,3 @@
-//Dynamically add comment to league#show
-$('form').submit(function(event) {
-    $(this).hide();
-    var values = $(this).serialize();
-    $.post('/comments', values, function(comment) {
-
-    class Comment {
-      constructor(comment) {
-        this.content = comment.data.attributes.content
-        this.team = comment.data.attributes.team.name
-        this.created_at = moment(comment.created_at).format("MMM-DD HH:mm A")
-      }
-    }
-
-    Comment.prototype.addComment = function () {
-      $("#messageIndex").prepend('<li>"' + this.content + '"<br>'
-      + this.team + ' -- ' + this.created_at + '</li><br>')
-    }
-    let newComment = new Comment(comment)
-    newComment.addComment()
-  })
-  return false
-});
-
 function loadTeam(team_id) {
   event.preventDefault()
   var url = '/teams/' + team_id
@@ -69,4 +45,8 @@ function loadTeam(team_id) {
     element[0].innerHTML = result
   })
   return false
+}
+
+function hide() {
+    $('.team_profile').hide();
 }

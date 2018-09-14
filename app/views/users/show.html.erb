@@ -27,30 +27,20 @@
 <% if is_admin? %>
   <div id="newLeague">
     <br>
-    <h4><a href='#' onclick='createNewAdminTeamForm()'>Create League</a></h4>
+
+    <h4><%= link_to 'Create League', new_user_team_path(@user, @team), remote: true %></h4>
     <br>
     <div id="newTeamForm"></div>
   </div>
 <% else %>
   <div id="newTeam">
     <br>
-    <h4><a href='#' onclick='createNewTeamForm()'>Create New Team</a></h4>
+    <h4><%= link_to 'Create Team', new_user_team_path(@user, @team), remote: true %></h4>
+
     <br>
     <div id="newTeamForm"></div>
   </div>
 <% end %>
-
-<script type="text/javascript" charset="utf-8">
-function createNewTeamForm() {
-  event.preventDefault();
-  $('#newTeamForm').html("<%= j (render 'teams/new_team') %>")
-}
-
-function createNewAdminTeamForm() {
-  event.preventDefault();
-  $('#newTeamForm').html("<%= j (render 'teams/new_admin_team') %>")
-}
-</script>
 
 <br>
 

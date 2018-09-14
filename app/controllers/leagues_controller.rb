@@ -1,7 +1,11 @@
 class LeaguesController < ApplicationController
   def new
     @league = League.new
-    render json: @league
+    @user = User.find_by_id(session[:user_id])
+    respond_to do |format|
+      format.js
+      format.json { render json: @league }
+    end
   end
 
   def create
@@ -10,13 +14,9 @@ class LeaguesController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     @league.teams << @team
     @league.admin_id = session[:user_id]
-    if @league.save
-      session[:league_id] = @league.id
-      @league.save
-      render json: @league
-    else
-      render 'new'
-    end
+    @league.save
+    session[:league_id] = @league.id
+    render json: @league
   end
 
     def index

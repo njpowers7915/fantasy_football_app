@@ -40,19 +40,6 @@ function showLeagues() {
     })
 }
 
-//Create new league from team#show
-$('form').submit(function(event) {
-    $(this).hide();
-    var values = $(this).serialize();
-
-    $.post('/leagues', values, function(league) {
-      currentLeague = league.data.id
-      urlWithParams = "/leagues/" + currentLeague
-      $("#leagueContainer").html('<h4><a href=' + urlWithParams + '>' + league.data.attributes.name + ' -- League Homepage</a></h4>')
-    })
-    return false
-  });
-
 //Show player profiles on team#show
 function loadPlayer(player_id) {
     event.preventDefault()

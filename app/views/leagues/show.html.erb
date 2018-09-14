@@ -21,21 +21,10 @@
   <br>
 
 <div id="messageBoard">
-  <h4><a href='#' onclick='viewMessageBoard()'>Message Board</a></h4>
+  <h4><%= link_to 'Message Board', message_board_path, remote: true %></h4>
   <br>
   <div id="newMessageForm"></div>
 </div>
-
-<script type="text/javascript" charset="utf-8">
-function hide() {
-    $('.team_profile').hide();
-  }
-
-function viewMessageBoard() {
-  event.preventDefault();
-  $('#messageBoard').html("<%= j (render 'comments/index') %>")
-}
-</script>
 
 <script id="team-template" type="text/x-handlebars-template">
     <h4>{{name}} -- Points: {{points_total}} -- Owner: {{owner}}</h4><br>

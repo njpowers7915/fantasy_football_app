@@ -1,7 +1,7 @@
 <h2>Message Board</h2>
 <br>
 
-<h4><a href='#' onclick='createNewComment()'>Create New Message</a></h4>
+<h4><%= link_to 'Post New Message', new_comment_path, remote: true %></h4>
 <br>
 <div id="newCommentForm"></div>
 <br>
@@ -18,10 +18,3 @@
     </div>
   </ul>
 <% end %>
-
-<script type="text/javascript" charset="utf-8">
-function createNewComment() {
-  event.preventDefault();
-  $('#newCommentForm').html("<%= j (render 'comments/add_comment') %>")
-}
-</script>

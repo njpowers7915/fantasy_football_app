@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   get '/logout', to: "sessions#destroy"
 
+  get '/message_board', to: "comments#message_board"
+
   resources :users do
     resources :teams
   end
