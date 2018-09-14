@@ -14,7 +14,6 @@ class TeamsController < ApplicationController
   end
 
   def show
-    #if Team.find_by_id(params[:id])
     @team = Team.find_by_id(params[:id])
     session[:team_id] = @team.id
     @user = User.find_by_id(session[:user_id])
