@@ -26,7 +26,6 @@ class UsersController < ApplicationController
 
     if User.find_by_id(session[:user_id])
       @user = User.find_by_id(session[:user_id])
-      #@teams = @user.teams
       respond_to do |format|
         format.html
         format.json { render json: @user }
@@ -42,12 +41,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by_id(session[:user_id])
-    #if params["commit"]
-    #  @playlist = Playlist.find_by_id(session[:playlist_id])
-    #  @user.like_playlist(@playlist)
-    #  @user.save
-    #  redirect_to @user
-    #end
   end
 
   private

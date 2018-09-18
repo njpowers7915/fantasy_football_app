@@ -18,7 +18,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find_by_id(params[:id])
-    session[:team_id] = @team.id
+    #session[:team_id] = @team.id
     @user = User.find_by_id(session[:user_id])
     @players = @team.players
     @league = League.new
@@ -59,7 +59,6 @@ class TeamsController < ApplicationController
                   redirect_to user_team_path(@user, @team)
                 else
                   @team.players << @player
-                  #binding.pry
                   @team.update_points
                   @team.update_salary
                   redirect_to user_team_path(@user, @team)
